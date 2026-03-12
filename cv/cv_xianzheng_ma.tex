@@ -1,0 +1,145 @@
+%-------------------------
+% CV - Xianzheng Ma
+% Classic LaTeX format
+%-------------------------
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% Colors
+\definecolor{linkblue}{RGB}{0,102,204}
+\hypersetup{colorlinks=true, urlcolor=linkblue, linkcolor=linkblue}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries\scshape}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{6pt}
+
+% Remove page numbers
+\pagestyle{empty}
+
+% Custom commands
+\newcommand{\cventry}[4]{%
+  \noindent\textbf{#1} \hfill #2 \\
+  \textit{#3} \hfill \textit{#4} \\[2pt]
+}
+\newcommand{\paper}[4]{%
+  \item #1. \textit{#2}. #3. #4
+}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+  {\LARGE \textbf{Xianzheng Ma}} \\[4pt]
+  \textit{Embodied Agents $\cdot$ Robotic World Model $\cdot$ 3D Understanding} \\[4pt]
+  DPhil Student, VGG \& AVL, University of Oxford \\[3pt]
+  \href{mailto:xianzheng@robots.ox.ac.uk}{xianzheng@robots.ox.ac.uk} $\cdot$
+  \href{https://xianzhengma.github.io}{xianzhengma.github.io} $\cdot$
+  \href{https://scholar.google.com/citations?user=NS8g2mMAAAAJ}{Google Scholar} $\cdot$
+  \href{https://github.com/xianzhengma}{GitHub}
+\end{center}
+
+%----------RESEARCH INTERESTS----------
+\section{Research Interests}
+3D computer vision and robotics. Previously focused on leveraging 3D Large Language Models to reason about and understand the 3D world. More recently, shifted towards enabling robots to understand and interact with the physical world through video and 3D modalities, with a current emphasis on utilizing world models to improve the generalization capability of general-purpose robotic systems.
+
+%----------EDUCATION----------
+\section{Education}
+\cventry{University of Oxford}{Oct 2023 -- Present}{DPhil, Visual Geometry Group (VGG) \& Active Vision Lab (AVL)}{Oxford, UK}
+Supervised by \href{https://www.robots.ox.ac.uk/~victor/}{Prof.\ Victor Prisacariu} and \href{https://eng.ox.ac.uk/people/iro-laina/}{Prof.\ Iro Laina}. \\
+Working closely with \href{https://www.robots.ox.ac.uk/~joao/}{Prof.\ Jo\~{a}o F.\ Henriques} and \href{https://ori.ox.ac.uk/people/ingmar-posner}{Prof.\ Ingmar Posner}. \\[6pt]
+
+\cventry{Wuhan University}{Sep 2014 -- Jun 2021}{Bachelor's and Master's Degrees}{Wuhan, China}
+
+%----------EXPERIENCE----------
+\section{Research Experience}
+\cventry{Shanghai AI Laboratory}{2021 -- 2023}{Full-time Researcher}{Shanghai, China}
+Supervised by \href{http://xpixel.group/2010/01/20/chaodong.html}{Prof.\ Chao Dong}.
+
+%----------PUBLICATIONS----------
+\section{Selected Publications \textnormal{\small{(* equal contribution)}}}
+\begin{enumerate}[leftmargin=*, labelsep=0.5em, itemsep=4pt]
+
+\paper{Yongchang Zhang*, \textbf{Xianzheng Ma}*, Tianyi Liu, Guangquan Zhou, Yang Chen}
+{See It, Say It, Sorted: An Iterative Training-Free Framework for Visually-Grounded Multimodal Reasoning in LVLMs}
+{\textbf{CVPR}, 2026}
+{\href{https://arxiv.org/abs/2602.21497}{[Paper]}}
+
+\paper{\textbf{Xianzheng Ma}*, Tao Sun*, Shuai Chen, Yash Bhalgat, Jindong Gu, Angel X Chang, Iro Armeni, Iro Laina, Songyou Peng, Victor Adrian Prisacariu}
+{Do 3D Large Language Models Really Understand 3D Spatial Relationships?}
+{\textbf{ICLR}, 2026}
+{\href{https://real-3dqa.github.io/}{[Project Page]}}
+
+\paper{Guanqi Zhan*, \textbf{Xianzheng Ma}*, Weidi Xie, Andrew Zisserman}
+{Inferring Dynamic Physical Properties from Video Foundation Models}
+{arXiv preprint, 2025}
+{\href{https://arxiv.org/abs/2510.02311}{[Paper]}}
+
+\paper{Yanbang Li, ZiYang Gong, Haoyang Li, Xiaoqi Huang, Haolan Kang, Guangpingbai, \textbf{Xianzheng Ma}}
+{Robotic Visual Instruction}
+{\textbf{CVPR}, 2025}
+{\href{https://arxiv.org/abs/2505.00693}{[Paper]}}
+
+\paper{\textbf{Xianzheng Ma}*, Brandon Smart*, Yash Bhalgat*, et al.}
+{When LLMs Step into the 3D World: A Survey and Meta-Analysis of 3D Tasks via Multi-modal Large Language Models}
+{\textbf{IJCV}, under review}
+{\href{https://arxiv.org/abs/2405.10255v2}{[Paper]} \href{https://github.com/ActiveVisionLab/Awesome-LLM-3D}{[GitHub]}}
+
+\paper{\textbf{Xianzheng Ma}, Zhixiang Wang, Yacheng Zhan, Yinqiang Zheng, Zheng Wang, Dengxin Dai, Chia-Wen Lin}
+{Both Style and Fog Matter: Cumulative Domain Adaptation for Semantic Foggy Scene Understanding}
+{\textbf{CVPR}, 2022 \textbf{Oral}}
+{\href{https://arxiv.org/abs/2112.00484}{[Paper]}}
+
+\paper{Min Shi, Zihao Huang, \textbf{Xianzheng Ma}, Xiaowei Hu, Zhiguo Cao}
+{Matching Is Not Enough: A Two-Stage Framework for Category-Agnostic Pose Estimation}
+{\textbf{CVPR}, 2023 \textbf{Highlight}}
+{\href{https://github.com/flyinglynx/CapeFormer}{[Code]}}
+
+\paper{Yulu Gan, \textbf{Xianzheng Ma}, Yan Bai, Yihang Lou, Renrui Zhang, Nian Shi, Lin Luo}
+{Decorate the Newcomers: Visual Domain Prompt for Continual Test Time Adaptation}
+{\textbf{AAAI}, 2023 \textbf{Outstanding Student Paper}}
+{\href{https://arxiv.org/abs/2212.04145v1}{[Paper]}}
+
+\paper{\textbf{Xianzheng Ma}, Hossein Rahmani, Zhipeng Fan, Bin Yang, Jun Chen, Jun Liu}
+{REMOTE: Reinforced Motion Transformation Network for Semi-supervised 2D Pose Estimation in Videos}
+{\textbf{AAAI}, 2022}
+{\href{https://ojs.aaai.org/index.php/AAAI/article/view/20089/19848}{[Paper]}}
+
+\end{enumerate}
+
+
+%----------AWARDS----------
+\section{Honors \& Awards}
+\begin{itemize}[leftmargin=*, labelsep=0.5em, itemsep=2pt]
+  \item Outstanding Reviewer (top 3\%), ICCV 2025
+  \item Outstanding Student Paper Award, AAAI 2023
+  \item Oral Presentation, CVPR 2022
+  \item Highlight Paper, CVPR 2023
+\end{itemize}
+
+%----------SKILLS----------
+\section{Skills}
+\begin{description}[leftmargin=!, labelwidth=9em, labelsep=0.5em, itemsep=2pt, font=\normalfont\bfseries]
+  \item[Programming:] Python, PyTorch, C/C++, CUDA, Linux, Git. Multi-node distributed training on GPU clusters (SLURM, PBS).
+  \item[Robotics Simulation:] MuJoCo, ManiSkill, Genesis.
+  \item[Robotics \& VLA:] Pre-training and reproduction of VLA models (e.g., xVLA) with multi-node multi-GPU training, achieving 40$\times$ inference acceleration; reproduced and benchmarked on CALVIN, RoboTwin, SIMPLER, etc.
+  \item[Learning from Human:] Built a Real-to-Sim-to-Real pipeline that extracts manipulation skills from human demonstration videos and transfers them to robotic policies via simulation; teleoperation data collection on Franka Arm via Meta Quest and handheld controllers.
+  \item[Current Project:] Video-based World Model for Robotics — utilizing video generation models to achieve closed-loop robotic control and tackle long-horizon manipulation tasks.
+\end{description}
+
+%----------ACADEMIC SERVICE----------
+\section{Academic Services}
+\begin{description}[leftmargin=!, labelwidth=9em, labelsep=0.5em, itemsep=2pt, font=\normalfont\bfseries]
+  \item[Conference Reviewer:] CVPR (2022--2026), AAAI (2022--2026), ICLR (2023--2026), NeurIPS (2024--2025), ICCV (2025), ECCV (2024).
+  \item[Journal Reviewer:] IJCV, TPAMI, TMM.
+  \item[Area Chair:] IJCAI 2022 (China branch).
+\end{description}
+
+\end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.12)  12 MAR 2026 01:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.12)  13 MAR 2026 00:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -392,13 +392,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--60
 
  []
 
+
+Overfull \hbox (1.13045pt too wide) in paragraph at lines 78--79
+[]\T1/lmr/m/n/10.95 Kohsuke Ide, Ry-ousuke Ya-mada, Yue Qiu, \T1/lmr/bx/n/10.95
+ Xi-anzheng Ma\T1/lmr/m/n/10.95 , Yoshi-hiro Fukuhara, Hi-rokatsu Kataoka,
+ []
+
 [1
 
 {/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/us
 r/local/texlive/2026basic/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/t
 exlive/2026basic/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-20.
+25.
 
 (/usr/local/texlive/2026basic/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -416,8 +422,8 @@ Package rerunfilecheck Info: File `cv_xianzheng_ma.out' has not changed.
 (rerunfilecheck)             Checksum: B7BFBA9B1891F09E64540869DE688D5C;977.
  ) 
 Here is how much of TeX's memory you used:
- 10041 strings out of 469006
- 155261 string characters out of 5454813
+ 10042 strings out of 469006
+ 155268 string characters out of 5454813
  586335 words of memory out of 5000000
  38615 multiletter control sequences out of 15000+600000
  665424 words of font info for 61 fonts, out of 8000000 for 9000
@@ -428,10 +434,10 @@ sr/local/texlive/2026basic/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/lo
 cal/texlive/2026basic/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/te
 xlive/2026basic/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive
 /2026basic/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on cv_xianzheng_ma.pdf (2 pages, 130280 bytes).
+Output written on cv_xianzheng_ma.pdf (2 pages, 130949 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 19 named destinations out of 1000 (max. 500000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
  57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

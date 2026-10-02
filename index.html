@@ -123,10 +123,13 @@
         <div class="my-3 p-0 bg-white shadow-sm rounded-sm">
             <h4 class="border-bottom border-gray p-3 mb-0">
                 <i class="fas"></i> News & Updates <small class="text-muted"
-                    style="font-size: 0.5em; font-weight: normal;">( Last updated: 2026-06-05 )</small>
+                    style="font-size: 0.5em; font-weight: normal;">( Last updated: 2026-10-02 )</small>
             </h4>
             <div class="p-3 pl-md-3 text-muted">
                 <ul>
+                    <li class="text-muted">
+                        [2026-09-30]&nbsp; 📢 Our <a href="https://arxiv.org/abs/2609.40358">Physis-Lang paper</a> on physically plausible video world models is now available on arXiv. See the <a href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> and <a href="https://github.com/Physis-Intelligence/Physis-Lang">repository</a>.
+                    </li>
                     <li class="text-muted">
                         [2026-06-02]&nbsp; 🏆 Our <a href="https://arxiv.org/abs/2510.02311">PhysVid paper</a> has been selected for the <strong>Best Paper Runner-Up Award</strong> at the <a href="https://vidgen-bench-eval.github.io/">CVPR 2026 Workshop on Video Generative Models: Benchmarks and Evaluation (VGBE)</a>!
                     </li>
@@ -202,6 +205,73 @@
                     style="font-size: 0.5em; font-weight: normal;">( * Equal Contribution, † Correspondence Author, ‡
                     Equal Supervision )</small>
             </h4>
+
+            <div class="row no-gutters position-relative border-bottom border-gray">
+                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail physis-demos">
+                    <video id="physis-demo-video" class="w-100 rounded-sm" autoplay loop muted playsinline controls preload="metadata"
+                        poster="assets/pub/2026/physis-lang/collision.jpg" aria-label="Physis-Lang demo: contact and collision">
+                        <source src="assets/pub/2026/physis-lang/collision.mp4" type="video/mp4">
+                    </video>
+                    <div class="physis-demo-select" role="group" aria-label="Physis-Lang demo videos">
+                        <button type="button" class="physis-demo-option" aria-label="Play contact and collision demo" aria-pressed="true"
+                            title="Contact and collision" data-src="assets/pub/2026/physis-lang/collision.mp4"
+                            data-poster="assets/pub/2026/physis-lang/collision.jpg" data-label="Physis-Lang demo: contact and collision">
+                            <img src="assets/pub/2026/physis-lang/collision.jpg" alt="">
+                        </button>
+                        <button type="button" class="physis-demo-option" aria-label="Play wetting and deformation demo" aria-pressed="false"
+                            title="Wetting and deformation" data-src="assets/pub/2026/physis-lang/wetting.mp4"
+                            data-poster="assets/pub/2026/physis-lang/wetting.jpg" data-label="Physis-Lang demo: wetting and deformation">
+                            <img src="assets/pub/2026/physis-lang/wetting.jpg" alt="">
+                        </button>
+                        <button type="button" class="physis-demo-option" aria-label="Play tearing under tension demo" aria-pressed="false"
+                            title="Tearing under tension" data-src="assets/pub/2026/physis-lang/tearing.mp4"
+                            data-poster="assets/pub/2026/physis-lang/tearing.jpg" data-label="Physis-Lang demo: tearing under tension">
+                            <img src="assets/pub/2026/physis-lang/tearing.jpg" alt="">
+                        </button>
+                        <button type="button" class="physis-demo-option" aria-label="Play motion and shadows demo" aria-pressed="false"
+                            title="Motion and shadows" data-src="assets/pub/2026/physis-lang/shadows.mp4"
+                            data-poster="assets/pub/2026/physis-lang/shadows.jpg" data-label="Physis-Lang demo: motion and shadows">
+                            <img src="assets/pub/2026/physis-lang/shadows.jpg" alt="">
+                        </button>
+                        <button type="button" class="physis-demo-option" aria-label="Play deformation under load demo" aria-pressed="false"
+                            title="Deformation under load" data-src="assets/pub/2026/physis-lang/compression.mp4"
+                            data-poster="assets/pub/2026/physis-lang/compression.jpg" data-label="Physis-Lang demo: deformation under load">
+                            <img src="assets/pub/2026/physis-lang/compression.jpg" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
+                    <h5 class="mt-0 mb-1 font-weight-normal">Physis-Lang: Self-Evolving Language as a Physical Representation for Video World Model</h5>
+                    <p class="mt-0 mb-0 small">
+                        <span class="comma text-body">Liming Lu*</span>
+                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
+                        <span class="comma text-body">Wenkun He*</span>
+                        <span class="comma text-body">Guanqi Zhan*†</span>
+                        <span class="comma text-body">Yilin Zhao</span>
+                        <span class="comma text-body">Junyu Chen</span>
+                        <span class="comma text-body">Mengyao Xu</span>
+                        <span class="comma text-body">Jiaojiao Fan</span>
+                        <span class="comma text-body">Wenhang Ge</span>
+                        <span class="comma text-body">Yuchao Gu</span>
+                        <span class="comma text-body">Yunze Liu</span>
+                        <span class="comma text-body">Boyi Li</span>
+                        <span class="comma text-body">Zhen Dong</span>
+                        <span class="comma text-body">Victor Prisacariu</span>
+                        <span class="comma text-body">Ming-Yu Liu</span>
+                        <span class="comma text-body">Song Han</span>
+                        <span class="comma text-body">Han Cai†</span>
+                    </p>
+
+                    <p class="mt-0 mb-0 small"><i>arXiv preprint</i>, 2026</p>
+                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
+                        <a target="_blank" href="https://arxiv.org/abs/2609.40358">paper</a> |
+                        <a target="_blank" href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> |
+                        <a target="_blank" href="https://github.com/Physis-Intelligence/Physis-Lang">repository</a>
+                    </p>
+
+                    <p class="mt-0 mb-0 small text-muted">We introduce a self-evolving physical-language representation that connects video data curation, model training, and generation to improve physical plausibility in video world models.</p>
+                </div>
+            </div>
 
             <div class="row no-gutters position-relative border-bottom border-gray">
                 <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
@@ -727,7 +797,7 @@
             <div class="container">
                 <div class="row my-3">
                     <div class="col-6">
-                        <small class="text-muted"><i>Last updated: 2026-06-05</i></small>
+                        <small class="text-muted"><i>Last updated: 2026-10-02</i></small>
                     </div>
                     <div class="col-6">
                         <div class="float-right text-muted"><i>template from <a href="https://luost.me">luost26</a></i>

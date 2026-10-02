@@ -16,21 +16,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const video = document.getElementById('physis-demo-video');
     if (!video) return;
 
-    const options = document.querySelectorAll('.physis-demo-option');
-    options.forEach(function (option) {
-        option.addEventListener('click', function () {
-            if (option.getAttribute('aria-pressed') === 'true') return;
+    const base = 'assets/pub/2026/physis-lang/';
+    const demos = [
+        ['collision', 'contact and collision'],
+        ['wetting', 'wetting and deformation'],
+        ['tearing', 'tearing under tension'],
+        ['shadows', 'motion and shadows'],
+        ['compression', 'deformation under load']
+    ];
+    let current = 0;
 
-            video.pause();
-            video.src = option.dataset.src;
-            video.poster = option.dataset.poster;
-            video.setAttribute('aria-label', option.dataset.label);
-            video.load();
-            video.play().catch(function () {});
-
-            options.forEach(function (button) {
-                button.setAttribute('aria-pressed', String(button === option));
-            });
-        });
+    video.addEventListener('ended', function () {
+        current = (current + 1) % demos.length;
+        const [name, description] = demos[current];
+        video.src = base + name + '.mp4';
+        video.poster = base + name + '.jpg';
+        video.setAttribute('aria-label', 'Physis-Lang demo: ' + description);
+        video.load();
+        const playback = video.play();
+        if (playback) playback.catch(function () {});
     });
 });

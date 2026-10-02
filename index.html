@@ -128,7 +128,7 @@
             <div class="p-3 pl-md-3 text-muted">
                 <ul>
                     <li class="text-muted">
-                        [2026-09-30]&nbsp; 📢 Our <a href="https://arxiv.org/abs/2609.40358">Physis-Lang paper</a> on physically plausible video world models is now available on arXiv. See the <a href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> and <a href="https://github.com/Physis-Intelligence/Physis-Lang">repository</a>.
+                        [2026-09-30]&nbsp; 📢 Our <a href="https://arxiv.org/abs/2609.40358">Physis-Lang</a> paper on physically plausible video world models is now available on arXiv. See the <a href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> and <a href="https://github.com/Physis-Intelligence/Physis-Lang">repository</a>.
                     </li>
                     <li class="text-muted">
                         [2026-06-02]&nbsp; 🏆 Our <a href="https://arxiv.org/abs/2510.02311">PhysVid paper</a> has been selected for the <strong>Best Paper Runner-Up Award</strong> at the <a href="https://vidgen-bench-eval.github.io/">CVPR 2026 Workshop on Video Generative Models: Benchmarks and Evaluation (VGBE)</a>!
@@ -207,38 +207,13 @@
             </h4>
 
             <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail physis-demos">
-                    <video id="physis-demo-video" class="w-100 rounded-sm" autoplay loop muted playsinline controls preload="metadata"
-                        poster="assets/pub/2026/physis-lang/collision.jpg" aria-label="Physis-Lang demo: contact and collision">
+                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3">
+                    <video id="physis-demo-video" class="w-100 rounded-sm" autoplay muted playsinline controls preload="metadata"
+                        style="aspect-ratio: 832 / 480; height: auto; display: block;"
+                        poster="assets/pub/2026/physis-lang/collision.jpg"
+                        aria-label="Physis-Lang demo: contact and collision">
                         <source src="assets/pub/2026/physis-lang/collision.mp4" type="video/mp4">
                     </video>
-                    <div class="physis-demo-select" role="group" aria-label="Physis-Lang demo videos">
-                        <button type="button" class="physis-demo-option" aria-label="Play contact and collision demo" aria-pressed="true"
-                            title="Contact and collision" data-src="assets/pub/2026/physis-lang/collision.mp4"
-                            data-poster="assets/pub/2026/physis-lang/collision.jpg" data-label="Physis-Lang demo: contact and collision">
-                            <img src="assets/pub/2026/physis-lang/collision.jpg" alt="">
-                        </button>
-                        <button type="button" class="physis-demo-option" aria-label="Play wetting and deformation demo" aria-pressed="false"
-                            title="Wetting and deformation" data-src="assets/pub/2026/physis-lang/wetting.mp4"
-                            data-poster="assets/pub/2026/physis-lang/wetting.jpg" data-label="Physis-Lang demo: wetting and deformation">
-                            <img src="assets/pub/2026/physis-lang/wetting.jpg" alt="">
-                        </button>
-                        <button type="button" class="physis-demo-option" aria-label="Play tearing under tension demo" aria-pressed="false"
-                            title="Tearing under tension" data-src="assets/pub/2026/physis-lang/tearing.mp4"
-                            data-poster="assets/pub/2026/physis-lang/tearing.jpg" data-label="Physis-Lang demo: tearing under tension">
-                            <img src="assets/pub/2026/physis-lang/tearing.jpg" alt="">
-                        </button>
-                        <button type="button" class="physis-demo-option" aria-label="Play motion and shadows demo" aria-pressed="false"
-                            title="Motion and shadows" data-src="assets/pub/2026/physis-lang/shadows.mp4"
-                            data-poster="assets/pub/2026/physis-lang/shadows.jpg" data-label="Physis-Lang demo: motion and shadows">
-                            <img src="assets/pub/2026/physis-lang/shadows.jpg" alt="">
-                        </button>
-                        <button type="button" class="physis-demo-option" aria-label="Play deformation under load demo" aria-pressed="false"
-                            title="Deformation under load" data-src="assets/pub/2026/physis-lang/compression.mp4"
-                            data-poster="assets/pub/2026/physis-lang/compression.jpg" data-label="Physis-Lang demo: deformation under load">
-                            <img src="assets/pub/2026/physis-lang/compression.jpg" alt="">
-                        </button>
-                    </div>
                 </div>
                 <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
                     <h5 class="mt-0 mb-1 font-weight-normal">Physis-Lang: Self-Evolving Language as a Physical Representation for Video World Model</h5>
@@ -266,7 +241,8 @@
                     <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                         <a target="_blank" href="https://arxiv.org/abs/2609.40358">paper</a> |
                         <a target="_blank" href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> |
-                        <a target="_blank" href="https://github.com/Physis-Intelligence/Physis-Lang">repository</a>
+                        <a target="_blank" href="https://github.com/Physis-Intelligence/Physis-Lang">code</a> |
+                        <a target="_blank" href="https://physis-intelligence.github.io/physis-lang-web/#citation">bibtex</a>
                     </p>
 
                     <p class="mt-0 mb-0 small text-muted">We introduce a self-evolving physical-language representation that connects video data curation, model training, and generation to improve physical plausibility in video world models.</p>
@@ -336,8 +312,8 @@
                     <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                         <a target="_blank" href="https://arxiv.org/abs/2602.21497v1">paper</a> |
                         <a target="_blank" href="https://arxiv.org/pdf/2602.21497v1">arxiv</a> |
-                        <a target="_blank" href="">code</a> |
-                        <a target="_blank" href="">bibtex</a>
+                        <a target="_blank" href="https://github.com/uuuuZYC/ECRD">code</a> |
+                        <a target="_blank" href="https://raw.githubusercontent.com/uuuuZYC/ECRD/main/CITATION.bib">bibtex</a>
                     </p>
 
                     <p class="mt-0 mb-0 small text-muted">We propose an iterative, training-free, plug-and-play
@@ -369,8 +345,9 @@
                     <p class="mt-0 mb-0 small text-muted"></p>
 
                     <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="">paper</a> |
-                        <a target="_blank" href="">bibtex</a>
+                        <a target="_blank" href="https://arxiv.org/abs/2608.15710">paper</a> |
+                        <a target="_blank" href="https://github.com/KohsukeIde/BeyondSingleObject">code</a> |
+                        <a target="_blank" href="https://github.com/KohsukeIde/BeyondSingleObject#-citation">bibtex</a>
                     </p>
 
                     <p class="mt-0 mb-0 small text-muted">We study learning 3D spatial relations between multiple
@@ -825,7 +802,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/github-buttons/2.14.2/buttons.min.js"
     integrity="sha512-OYwZx04hKFeFNYrWxIyo3atgGpb+cxU0ENWBZs72X7T9U+NoHPM1ftUn/Mfw7dRDXrqWA6M1wBg6z6fGE32aeA=="
     crossorigin="anonymous"></script>
-<script src="assets/js/common.js"></script>
+<script src="assets/js/common.js?v=20261002-sequential"></script>
 
 
 

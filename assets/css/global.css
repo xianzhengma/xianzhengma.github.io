@@ -86,60 +86,6 @@ img.lazy {
     position: relative;
 }
 
-.physis-demos video {
-    aspect-ratio: 832 / 480;
-    object-fit: cover;
-    background: #111;
-}
-
-.physis-demo-select {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 6px;
-    margin-top: 6px;
-}
-
-.physis-demo-option {
-    grid-column: span 2;
-    aspect-ratio: 832 / 480;
-    padding: 0;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    background: #fff;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.physis-demo-option:nth-child(4) {
-    grid-column: 2 / span 2;
-}
-
-.physis-demo-option:nth-child(5) {
-    grid-column: 4 / span 2;
-}
-
-.physis-demo-option[aria-pressed="true"] {
-    border-color: #2875a7;
-}
-
-.physis-demo-option:focus-visible {
-    outline: 2px solid #2875a7;
-    outline-offset: 2px;
-}
-
-.physis-demo-option img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.physis-demos:hover video,
-.physis-demos:hover img {
-    transform: none;
-    box-shadow: none;
-    z-index: auto;
-}
-
 @media (min-width: 576px) {
     .card-columns {
         column-count: 1 !important;

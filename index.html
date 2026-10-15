@@ -1,812 +1,1052 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Xianzheng Ma</title>
-    <link href="assets/images/logo.png" rel="shortcut icon">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xianzheng Ma 马宪政 — World Models · Spatial Intelligence · Robot Learning</title>
+<meta name="description" content="Xianzheng Ma (马宪政), DPhil student at the University of Oxford (Visual Geometry Group &amp; Active Vision Group). I study how robots can understand the physical world and generalize to new tasks.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="https://xianzhengma.github.io/assets/images/logo.png">
+<style>
+:root{
+  --white:#FFFFFF;
+  --ice:#F6FAFF;
+  --steel:#EAF1F9;
+  --mist:#E9EEF5;
+  --ink:#0B1D3F;
+  --ink-2:#33466D;
+  --ink-3:#56688D;
+  --line:#DCE8F6;
+  --line-2:#C2D5EE;
+  --cyan:#0B7BA3;
+  --cyan-soft:#E4F3FA;
+  --peri:#5A6BCB;
+  --peri-soft:#EDF0FC;
+  --grid:rgba(11,123,163,.10);
+  --sans:"Inter","IBM Plex Sans","Helvetica Neue",Helvetica,system-ui,-apple-system,"Segoe UI",Arial,"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono","SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;
+  --cjk:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --wrap:1180px;
+  --gut:clamp(18px,4vw,44px);
+  --r:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:.2em;text-decoration-thickness:1px;transition:color .15s,text-decoration-color .15s,border-color .15s,background-color .15s}
+a:hover{color:var(--cyan);text-decoration-color:currentColor}
+a:focus-visible,button:focus-visible,summary:focus-visible,video:focus-visible,iframe:focus-visible{outline:2px solid var(--peri);outline-offset:3px;border-radius:4px}
+img,video,iframe{display:block;max-width:100%}
+img,video{height:auto}
+button{font:inherit;color:inherit}
+[lang="zh-Hans"]{font-family:var(--cjk)}
+[hidden]{display:none !important}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);position:relative}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;z-index:50;border-radius:6px}
+.skip:focus{left:8px}
+.mono{font-family:var(--mono)}
+
+/* ---------- header ---------- */
+.mast{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:58px}
+.mark{display:flex;align-items:baseline;gap:.55em;text-decoration:none;white-space:nowrap;font-weight:650;letter-spacing:-.01em}
+.mark .z{font-weight:400;color:var(--ink-3);font-size:.9em}
+.nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:2px clamp(14px,2.2vw,28px)}
+.nav a{font-size:.9rem;color:var(--ink-2);text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent}
+.nav a:hover{color:var(--ink);border-bottom-color:var(--cyan)}
+
+/* ---------- bands (background rhythm) ---------- */
+.band{position:relative;padding:clamp(52px,7vw,88px) 0}
+.band-white{background:var(--white)}
+.band-steel{background:var(--steel)}
+.band-mist{background:var(--mist)}
+.band-ice{background:var(--ice)}
+/* engineering grid kept to the outer margins so text sits on flat colour */
+#research::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:linear-gradient(90deg,#000 0,transparent 9%,transparent 91%,#000 100%);mask-image:linear-gradient(90deg,#000 0,transparent 9%,transparent 91%,#000 100%)}
+.band-tight{padding-top:clamp(30px,4vw,44px)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--white);padding:clamp(44px,8vh,92px) 0 clamp(40px,7vh,76px)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:44px 44px;background-position:-1px -1px;-webkit-mask-image:radial-gradient(ellipse 34% 80% at 80% 46%,#000 0%,rgba(0,0,0,.5) 45%,transparent 78%);mask-image:radial-gradient(ellipse 34% 80% at 80% 46%,#000 0%,rgba(0,0,0,.5) 45%,transparent 78%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 80% 44%,rgba(90,128,220,.16) 0%,rgba(11,123,163,.06) 22%,transparent 46%)}
+.ruler{position:absolute;top:0;bottom:0;right:0;width:26px;border-left:1px solid var(--line);background:repeating-linear-gradient(180deg,var(--line-2) 0 1px,transparent 1px 11px),repeating-linear-gradient(180deg,var(--cyan) 0 1px,transparent 1px 55px);background-size:8px 100%,14px 100%;background-repeat:no-repeat;opacity:.7;pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px clamp(32px,6vw,80px);align-items:center}
+.hero-text{min-width:0}
+.label{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin:0 0 20px}
+.label::before{content:"";flex:none;width:30px;height:2px;background:var(--cyan);border-radius:2px}
+h1{font-weight:650;font-size:clamp(2.4rem,5.4vw,4rem);line-height:1.02;letter-spacing:-.035em;margin:0}
+h1 .z{font-weight:400;font-size:.42em;letter-spacing:.06em;color:var(--ink-3);margin-left:.4em;vertical-align:.45em}
+.affil{margin:12px 0 0;font-size:clamp(1rem,1.5vw,1.12rem);color:var(--ink-2)}
+.slogan{margin:clamp(26px,4vh,40px) 0 0;max-width:17em;font-size:clamp(1.55rem,3.2vw,2.45rem);line-height:1.14;font-weight:550;letter-spacing:-.025em;color:var(--ink)}
+.slogan span{background:linear-gradient(90deg,var(--peri),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.support{margin:14px 0 0;max-width:34em;color:var(--ink-2);font-size:clamp(1rem,1.35vw,1.06rem)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:clamp(22px,3.4vh,30px) 0 0;padding:0;list-style:none}
+.links a{display:inline-flex;align-items:center;gap:.5em;padding:8px 15px;border:1px solid var(--line-2);border-radius:999px;background:var(--white);font-size:.9rem;text-decoration:none;color:var(--ink)}
+.links a:hover{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft)}
+.links svg{width:16px;height:16px;flex:none}
+.id{position:relative;justify-self:center;width:300px;height:360px;display:flex;align-items:center;justify-content:center}
+.id svg.lines{position:absolute;inset:-34px -40px;width:calc(100% + 80px);height:calc(100% + 68px);pointer-events:none;overflow:visible}
+.portrait{position:relative;margin:0;width:224px;padding:6px;background:var(--white);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 18px 40px -24px rgba(11,29,63,.35)}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:9px;background:var(--steel)}
+.portrait::before,.portrait::after{content:"";position:absolute;width:16px;height:16px;border:1.5px solid var(--cyan);pointer-events:none}
+.portrait::before{top:-12px;left:-12px;border-right:0;border-bottom:0}
+.portrait::after{bottom:-12px;right:-12px;border-left:0;border-top:0}
+
+/* ---------- section heads ---------- */
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:clamp(20px,3vw,30px)}
+.sh .no{flex:none;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:var(--cyan)}
+.sh h2{flex:none;font-weight:650;font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.1;letter-spacing:-.025em;margin:0}
+.sh::after{content:"";order:3;flex:1;height:1px;background:var(--line-2);min-width:24px}
+.sh .aside{order:4;flex:none;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0}
+.lede{margin:-8px 0 clamp(24px,3vw,32px);color:var(--ink-2);max-width:40em;font-size:1.04rem}
+
+/* ---------- disclosure ---------- */
+.disc{background:var(--white);border:1px solid var(--line);border-radius:var(--r)}
+.disc>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px clamp(16px,2.4vw,22px);border-radius:var(--r)}
+.disc>summary::-webkit-details-marker{display:none}
+.disc>summary .st{font-weight:550}
+.disc>summary .st small{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-top:2px}
+.disc>summary .ind{flex:none;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line-2);border-radius:999px;padding:5px 12px}
+.disc>summary .ind::before{content:"+ Expand"}
+.disc[open]>summary .ind::before{content:"\2212  Collapse"}
+.disc>summary:hover .ind{border-color:var(--cyan);background:var(--cyan-soft)}
+.disc-in{border-top:1px solid var(--line);padding:4px clamp(16px,2.4vw,22px) 18px}
+
+/* ---------- news ---------- */
+.news{list-style:none;margin:0;padding:0}
+.news li{display:grid;grid-template-columns:100px 92px minmax(0,1fr);gap:4px 18px;padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.news time{font-family:var(--mono);font-size:.8rem;color:var(--ink-3)}
+.tag{justify-self:start;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.tag.aw{color:var(--peri);border-color:#C9D0F3;background:var(--peri-soft)}
+.news p{margin:0;color:var(--ink-2);font-size:.96rem;line-height:1.55;overflow-wrap:break-word}
+.news p strong{color:var(--ink);font-weight:600}
+.news-top{border-top:1px solid var(--line-2)}
+.news-all{margin-top:16px}
+.news-all .news li:last-child{border-bottom:0}
+
+/* ---------- research trajectory ---------- */
+.traj{list-style:none;margin:0 0 clamp(40px,6vw,64px);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.traj li{position:relative;min-width:0;border-top:2px solid var(--line-2);padding:20px 16px 0 0}
+.traj li.now{border-top-color:var(--cyan)}
+.traj li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--steel);border:2px solid var(--peri)}
+.traj li.now::before{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 4px var(--cyan-soft)}
+.traj li:not(:last-child)::after{content:"\2192";position:absolute;top:-14px;right:10px;font-size:.9rem;color:var(--ink-3)}
+.traj a{display:block;text-decoration:none}
+.traj .yrs{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.traj li.now .yrs{color:var(--cyan)}
+.traj b{display:block;font-weight:600;font-size:1.06rem;line-height:1.3;margin-top:4px}
+.traj a:hover b{color:var(--cyan)}
+
+/* ---------- research groups ---------- */
+.group{padding:clamp(28px,4vw,44px) 0 clamp(36px,5vw,56px)}
+.group+.group{border-top:1px solid var(--line-2)}
+.g-head{margin-bottom:clamp(20px,3vw,28px);max-width:46em}
+.g-idx{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+.g-idx .now{color:var(--cyan)}
+.g-head h3{font-weight:650;font-size:clamp(1.3rem,2.3vw,1.7rem);letter-spacing:-.02em;line-height:1.2;margin:0}
+.g-desc{margin:6px 0 0;color:var(--ink-2);font-size:.98rem}
+
+.feature{display:grid;gap:clamp(22px,3.4vw,44px);align-items:center}
+.feature>*{min-width:0}
+.f-a{grid-template-columns:minmax(0,1.85fr) minmax(0,1fr)}
+.f-b{grid-template-columns:minmax(0,1fr) minmax(0,1.85fr)}
+.f-c{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start}
+.venue{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.award{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--peri);background:var(--peri-soft);border:1px solid #C9D0F3;border-radius:999px;padding:1px 8px;max-width:100%;overflow-wrap:anywhere;font-style:normal}
+.f-title{font-weight:650;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.03em;line-height:1.05;margin:0}
+.f-q{margin:12px 0 0;font-size:1.08rem;line-height:1.4;color:var(--ink);font-weight:500}
+.f-q::before{content:"Q";font-family:var(--mono);font-size:.7rem;color:var(--cyan);border:1px solid var(--cyan);border-radius:4px;padding:0 4px;margin-right:8px;vertical-align:2px;font-weight:400}
+.f-c-txt{margin:10px 0 0;color:var(--ink-2);font-size:.95rem;line-height:1.55}
+.cta{display:inline-flex;align-items:center;gap:.45em;padding:8px 15px;border-radius:999px;border:1px solid var(--cyan);background:var(--cyan);color:#fff;text-decoration:none;font-size:.9rem;font-weight:550}
+.cta:hover{background:#08678A;border-color:#08678A;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:.45em;padding:7px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--white);color:var(--ink);font-size:.88rem;cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 0}
+.pl{display:flex;flex-wrap:wrap;gap:4px 14px;margin:12px 0 0;font-size:.86rem}
+.pl a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line-2)}
+.pl a:hover{color:var(--cyan);border-bottom-color:currentColor}
+
+/* media stage */
+.stage{position:relative;aspect-ratio:16/9;background:#12233F;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);box-shadow:0 22px 48px -30px rgba(11,29,63,.45)}
+.stage video{width:100%;height:100%;object-fit:contain;background:#12233F}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:10px;padding:12px 20px 12px 14px;border:0;border-radius:999px;background:rgba(255,255,255,.94);color:var(--ink);font-size:.92rem;font-weight:550;cursor:pointer;box-shadow:0 8px 24px -8px rgba(0,0,0,.45)}
+.play:hover{background:#fff;color:var(--cyan)}
+.play i{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--cyan);color:#fff;font-style:normal}
+.play i svg{width:14px;height:14px;margin-left:2px}
+.cap{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;margin:10px 0 0;font-size:.86rem;color:var(--ink-2);line-height:1.45}
+.cap .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);background:var(--white);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.cap.is-gen .k{color:#7A4F00;background:#FFF6E2;border-color:#F0D9A6}
+
+/* Physis film strip */
+.strip-sel{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.strip-sel li{min-width:0}
+.strip-sel button{position:relative;display:flex;flex-direction:column;gap:5px;width:100%;height:100%;padding:4px 4px 6px;border:1px solid transparent;border-radius:8px;background:transparent;text-align:left;cursor:pointer;font-size:.78rem;line-height:1.25;color:var(--ink-2)}
+.strip-sel button:hover{background:var(--white);border-color:var(--line-2);color:var(--ink)}
+.strip-sel button[aria-pressed="true"]{background:var(--white);border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan) inset;color:var(--ink)}
+.strip-sel img,.strip-sel .ph{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:5px;background:var(--white)}
+.strip-sel .ph{display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#1A3260,#0B7BA3);color:#fff;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+.strip-sel .ph svg{width:10px;height:10px}
+.strip-sel .gen{position:absolute;top:8px;left:8px;font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:#7A4F00;background:#FFF6E2;border-radius:3px;padding:0 4px}
+
+/* Real-3DQA segmented tabs + live demo */
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;margin:12px 0 0;padding:4px;border:1px solid var(--line-2);border-radius:999px;background:var(--white);list-style:none}
+.seg button{border:0;background:transparent;border-radius:999px;padding:6px 14px;font-size:.86rem;cursor:pointer;color:var(--ink-2)}
+.seg button:hover{color:var(--ink);background:var(--steel)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.live{margin-top:14px;padding:12px 14px;border-left:2px solid var(--cyan);background:rgba(255,255,255,.7);border-radius:0 8px 8px 0}
+.live p{margin:0;font-size:.9rem;color:var(--ink-2)}
+.live .actions{margin-top:10px}
+.slot iframe{width:100%;aspect-ratio:16/10;border:1px solid var(--line-2);border-radius:8px;background:#fff}
+.slot:not(:empty){margin-bottom:10px}
+.fine{font-size:.82rem;color:var(--ink-3);margin:8px 0 0}
+
+/* perception figure */
+.fig{margin:0;aspect-ratio:16/10;background:#fff;border:1px solid var(--line-2);border-radius:10px;overflow:hidden;box-shadow:0 22px 48px -34px rgba(11,29,63,.4)}
+.fig img{width:100%;height:100%;object-fit:contain}
+
+/* secondary works: compact media row, no boxed cards */
+.minis{list-style:none;margin:clamp(24px,3vw,32px) 0 0;padding:clamp(18px,2.4vw,24px) 0 0;border-top:1px dashed var(--line-2);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px clamp(20px,3vw,40px)}
+.minis.stack{grid-template-columns:minmax(0,1fr);margin-top:22px;padding-top:18px}
+.mini{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;align-items:start;min-width:0}
+.mini>*{min-width:0}
+.mini .thumb{aspect-ratio:16/10;background:#fff;border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.mini .thumb img{width:100%;height:100%;object-fit:contain}
+.mini .venue{margin-bottom:4px}
+.mini h4{margin:0;font-size:1.02rem;font-weight:600;line-height:1.3}
+.mini h4 a{text-decoration:none}
+.mini h4 a:hover{text-decoration:underline}
+.pub .q{margin:0 0 4px;font-size:.88rem;color:var(--ink-2);font-style:italic;line-height:1.45}
+.mini .pl{margin-top:6px;font-size:.82rem}
+.also{margin:16px 0 0;font-size:.9rem;color:var(--ink-3)}
+.also .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-right:10px}
+.also a{color:var(--ink-2)}
+
+/* ---------- archive ---------- */
+.archive-wrap{margin-top:clamp(8px,2vw,16px)}
+.marks{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);margin:14px 0 4px}
+.arch{display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 22px}
+.yr{font-family:var(--mono);font-size:.9rem;color:var(--cyan);padding-top:18px}
+.pubs{list-style:none;margin:0;padding:0}
+.pub{padding:16px 0;border-bottom:1px solid var(--line)}
+.pub h4{font-weight:600;font-size:1rem;line-height:1.4;margin:0 0 6px;overflow-wrap:break-word}
+.pub .au{font-size:.88rem;color:var(--ink-3);margin:0 0 4px;line-height:1.55}
+.pub .au b{color:var(--ink);font-weight:650}
+.pub .ve{font-size:.88rem;color:var(--ink-2);margin:0 0 4px}
+.pub .pl{margin-top:4px}
+.pub:target{background:linear-gradient(90deg,var(--cyan-soft),transparent 70%)}
+.gt{display:inline-block;font-family:var(--mono);font-size:.64rem;font-weight:400;letter-spacing:.08em;color:var(--ink-3);border:1px solid var(--line-2);border-radius:999px;padding:0 6px;margin-left:10px;vertical-align:2px;white-space:nowrap}
+.scholar{font-size:.88rem;color:var(--ink-3);margin:18px 0 0}
+
+/* ---------- talks ---------- */
+.talks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+.talk{min-width:0}
+.talk .thumb{display:block;position:relative;aspect-ratio:16/9;border:1px solid var(--line-2);border-radius:10px;overflow:hidden;background:var(--steel);text-decoration:none}
+.talk .thumb img{width:100%;height:100%;object-fit:cover}
+.talk .thumb:hover{border-color:var(--cyan)}
+.rec{display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:clamp(16px,2.4vw,24px);background:linear-gradient(135deg,var(--peri-soft) 0%,var(--cyan-soft) 100%);background-color:var(--peri-soft)}
+.rec::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(90,107,203,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(90,107,203,.12) 1px,transparent 1px);background-size:32px 32px;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000);mask-image:linear-gradient(90deg,transparent 30%,#000);pointer-events:none}
+.rec .top{position:relative;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.rec .mid{position:relative;display:flex;align-items:center;gap:12px;font-size:1.05rem;font-weight:600;color:var(--ink)}
+.rec .mid i{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:var(--cyan);color:#fff;font-style:normal;flex:none}
+.rec .mid i svg{width:16px;height:16px;margin-left:3px}
+.rec .dur{position:relative;align-self:flex-end;font-family:var(--mono);font-size:.78rem;color:#fff;background:var(--ink);border-radius:4px;padding:2px 7px}
+.talk .slot iframe{aspect-ratio:16/9}
+.talk .venue{margin:16px 0 6px}
+.talk h3{font-weight:600;font-size:clamp(1.08rem,1.7vw,1.24rem);line-height:1.35;margin:0}
+.talk h3 a{text-decoration:none}
+.talk h3 a:hover{text-decoration:underline}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin:8px 0 0;font-family:var(--mono);font-size:.76rem;color:var(--ink-3)}
+.talk .actions{margin-top:14px}
+.inline-d{margin-top:12px;font-size:.88rem;color:var(--ink-2)}
+.inline-d summary{cursor:pointer;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);width:max-content;max-width:100%}
+.inline-d p{margin:6px 0 0}
+
+/* ---------- milestones ---------- */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
+.tl li{position:relative;min-width:0;border-top:2px solid var(--line-2);padding:24px 14px 0 0}
+.tl li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--mist);border:2px solid var(--peri)}
+.tl li.big::before{background:var(--peri)}
+.tl li.last{border-top-color:var(--cyan)}
+.tl li.last::before{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 4px rgba(11,123,163,.16)}
+.tl details>summary{list-style:none;cursor:pointer;border-radius:6px}
+.tl details>summary::-webkit-details-marker{display:none}
+.tl time{display:block;font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--ink-2);font-weight:500}
+.tl li.last time{color:var(--cyan)}
+.tl b{display:block;font-weight:600;font-size:1rem;line-height:1.3;margin:6px 0 0;color:var(--ink)}
+.tl .tg{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.tl .tg::before{content:"+ more"}
+.tl details[open] .tg::before{content:"\2212  less"}
+.tl summary:hover .tg{color:var(--cyan)}
+.tl details p{margin:8px 0 0;font-size:.9rem;color:var(--ink-2);line-height:1.5}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,64px);align-items:start}
+.about-grid>div{min-width:0}
+.bio{margin:0;color:var(--ink-2);font-size:1.06rem;max-width:36em}
+.about .disc{margin-top:20px}
+.full-bio p{margin:14px 0 0;color:var(--ink-2);max-width:42em}
+.kv{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line)}
+.kv li{display:grid;gap:2px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--ink-2);line-height:1.45;overflow-wrap:break-word}
+.kv li b{font-weight:600;color:var(--ink);font-size:.92rem}
+.sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:400;margin:0 0 6px}
+.full-bio .sub{margin-top:20px}
+.ws{list-style:none;margin:0;padding:0}
+.ws li{padding:14px 0;border-top:1px solid var(--line-2)}
+.ws li:last-child{border-bottom:1px solid var(--line-2)}
+.ws .role{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:3px}
+.ws a{font-weight:550;line-height:1.4}
+
+/* ---------- moments strip ---------- */
+.moments{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.moment{margin:0;flex:0 0 auto;max-width:100%}
+.moment a{display:block;border-radius:8px;overflow:hidden;border:1px solid var(--line-2);background:var(--steel);text-decoration:none}
+.moment a:hover{border-color:var(--cyan)}
+.moment img{height:clamp(130px,13vw,180px);width:auto;max-width:100%;object-fit:contain}
+.moment figcaption{margin-top:6px;font-size:.88rem;color:var(--ink-2)}
+
+/* lightbox */
+.lb{border:0;padding:0;background:transparent;max-width:min(94vw,1400px);max-height:94vh;overflow:visible}
+.lb::backdrop{background:rgba(11,29,63,.82)}
+.lb figure{margin:0}
+.lb img{max-width:min(94vw,1400px);max-height:82vh;width:auto;height:auto;border-radius:8px;background:#fff}
+.lb .bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;margin-top:10px;color:#fff;font-size:.92rem}
+.lb .bar a{color:#fff}
+.lb .bar .btn{background:rgba(255,255,255,.95)}
+
+/* ---------- writing ---------- */
+.w-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 24px;margin-bottom:12px}
+.w-head p{margin:0;color:var(--ink-2);font-size:.95rem}
+.w-head .h{color:var(--ink-3);font-family:var(--mono);font-size:.78rem}
+.notes{list-style:none;margin:0;padding:0;counter-reset:n}
+.notes li{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:4px 16px;align-items:baseline;padding:14px 0;border-top:1px solid var(--line-2)}
+.notes li:last-child{border-bottom:1px solid var(--line-2)}
+.notes .n{font-family:var(--mono);font-size:.76rem;color:var(--cyan)}
+.notes .t{margin:0;font-family:var(--cjk);font-size:1.06rem;line-height:1.5;font-weight:550;overflow-wrap:anywhere}
+.notes .t a{text-decoration:none}
+.notes .t a:hover{text-decoration:underline}
+.notes .via{font-size:.82rem;color:var(--ink-3)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--white);border-top:1px solid var(--line-2);padding:clamp(40px,6vw,64px) 0 24px}
+.contact-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px}
+.contact-row>div{min-width:0}
+.contact .label{margin-bottom:10px}
+.contact h2{font-weight:600;font-size:clamp(1.15rem,2vw,1.35rem);letter-spacing:-.01em;margin:0 0 8px;color:var(--ink-2)}
+.email{display:inline-block;font-size:clamp(1.15rem,3vw,1.7rem);letter-spacing:-.01em;line-height:1.25;text-decoration:none;border-bottom:2px solid var(--cyan);overflow-wrap:anywhere}
+.elsewhere{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px;font-size:.92rem}
+.elsewhere a{color:var(--ink-2)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-top:clamp(32px,5vw,48px);padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.72rem;color:var(--ink-3)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .tl{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:34px}
+}
+@media (max-width:960px){
+  .f-a,.f-b,.f-c{grid-template-columns:minmax(0,1fr)}
+  .f-b .f-media{order:-1}
+  .about-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-grid{grid-template-columns:minmax(0,1fr) 250px}
+  .id{width:250px;height:310px}
+  .portrait{width:190px}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .mast{position:static}
+  .mast .wrap{flex-direction:column;align-items:flex-start;gap:2px;padding-top:12px;padding-bottom:8px}
+  .nav{justify-content:flex-start;gap:0 18px}
+  .ruler{display:none}
+  .hero{padding:28px 0 36px}
+  .hero::before{-webkit-mask-image:radial-gradient(circle at 18% 70px,#000 0,transparent 140px);mask-image:radial-gradient(circle at 18% 70px,#000 0,transparent 140px)}
+  .hero::after{background:radial-gradient(circle at 18% 70px,rgba(90,128,220,.14),transparent 160px)}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+  .id{order:-1;justify-self:start;width:auto;height:auto;display:block}
+  .id svg.lines{display:none}
+  .portrait{width:112px;padding:4px;border-radius:10px}
+  .portrait img{border-radius:7px}
+  .portrait::before,.portrait::after{width:10px;height:10px}
+  .portrait::before{top:-8px;left:-8px}
+  .portrait::after{bottom:-8px;right:-8px}
+  .slogan{max-width:none}
+  .traj{grid-template-columns:minmax(0,1fr);border-left:2px solid var(--line-2);margin-left:6px}
+  .traj li,.traj li.now{border-top:0;padding:0 0 18px 22px}
+  .traj li.now{margin-left:-2px;border-left:2px solid var(--cyan)}
+  .traj li::before{top:4px;left:-8px}
+  .traj li.now::before{left:-8px}
+  .traj li:not(:last-child)::after{content:none}
+  .minis{grid-template-columns:minmax(0,1fr)}
+  .strip-sel{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .talks{grid-template-columns:minmax(0,1fr)}
+  .news li{grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
+  .news li p{grid-column:1 / -1}
+  .arch{grid-template-columns:minmax(0,1fr)}
+  .yr{padding-top:14px}
+  .tl{grid-template-columns:minmax(0,1fr);row-gap:0;border-left:2px solid var(--line-2);margin-left:7px}
+  .tl li{border-top:0;padding:0 0 20px 24px}
+  .tl li.last{border-top:0}
+  .tl li::before{top:3px;left:-8px}
+  .notes li{grid-template-columns:36px minmax(0,1fr)}
+  .notes .via{grid-column:2}
+}
+@media (max-width:540px){
+  h1{font-size:clamp(2rem,9vw,2.4rem)}
+  h1 .z{display:block;margin:8px 0 0;font-size:.5em;vertical-align:0}
+  .label{font-size:.64rem;letter-spacing:.1em;gap:8px}
+  .label::before{width:18px}
+  .links{gap:8px}
+  .links a{padding:7px 12px;font-size:.86rem}
+  .sh{flex-wrap:wrap;gap:6px 12px}
+  .sh::after{order:5;flex-basis:100%}
+  .mini{grid-template-columns:96px minmax(0,1fr);gap:12px}
+  .disc>summary{flex-wrap:wrap}
+  .play{padding:10px 16px 10px 10px;font-size:.86rem}
+  .moments{gap:10px}
+  .moment img{height:150px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+@media print{
+  .mast{position:static}
+  .hero::before,.hero::after,#research::before,.ruler,.id svg.lines{display:none}
+  video,.play,.strip-sel,.seg,.live .actions{display:none}
+}
+
+/* Compact research and biography revision, 2026-10-15. */
+.links img{width:20px;height:20px;object-fit:contain}.links{gap:8px}.links a{padding:7px 11px}
+.band:not(#milestones){padding-top:40px;padding-bottom:40px}.sh{margin-bottom:22px}.about-intro{border-bottom:1px solid var(--line)}.about-intro .bio{max-width:76em;font-size:1rem}.about-intro .sh{margin-bottom:16px}.about-intro .inline-d{margin-top:12px}
+#research .lede{margin-bottom:28px}.traj{margin-bottom:26px}.traj li{padding-top:14px}.traj b{font-size:.95rem}
+.research-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}.research-grid .group{min-width:0;padding:0;border:0}.research-grid .group+.group{border-top:0}.research-grid .g-head{min-height:116px;margin-bottom:14px}.research-grid .g-head h3{font-size:1.15rem;line-height:1.3}.research-grid .g-desc{font-size:.86rem;line-height:1.45}.research-grid .g-idx{font-size:.64rem}
+.research-grid .feature{display:flex;flex-direction:column;align-items:stretch;gap:15px}.research-grid .f-media,.research-grid .fig{order:0}.research-grid .f-text{order:1}.research-grid .fig{margin:0;aspect-ratio:16/9;background:white;overflow:hidden;border-radius:8px;border:1px solid var(--line-2)}.research-grid .fig img{width:100%;height:100%;object-fit:contain}.research-grid .stage{width:100%;aspect-ratio:16/9;max-height:210px;border-radius:8px;box-shadow:none}.research-grid .f-title{font-size:1.3rem;line-height:1.2}.research-grid .venue{font-size:.63rem;gap:4px 6px;margin-bottom:7px}.research-grid .f-q{font-size:.92rem;margin-top:8px}.research-grid .f-c-txt{font-size:.85rem;margin-top:8px}.research-grid .actions{gap:5px;margin-top:12px}.research-grid .actions a{font-size:.76rem;padding:6px 9px}.research-grid .pl{font-size:.75rem;gap:5px 10px;margin-top:8px}.research-grid .cap{font-size:.72rem;margin-top:6px}.research-grid .play{padding:6px 10px;gap:6px;font-size:.75rem}.research-grid .play i{width:24px;height:24px}
+.strip-sel{display:flex;overflow-x:auto;gap:4px;padding-bottom:5px;margin-top:8px}.strip-sel li{flex:0 0 66px}.strip-sel button{font-size:.64rem}.strip-sel .gen{font-size:.48rem;left:5px;top:5px}.seg{margin-top:8px;padding:3px}.seg button{font-size:.72rem;padding:4px 8px}.optional-demo{margin-top:8px;font-size:.8rem}.optional-demo>summary,.group-more>summary{cursor:pointer;color:var(--cyan);font-size:.8rem;padding:8px 0}.optional-demo .live-inner{margin-top:8px}.group-more{border-top:1px solid var(--line-2);margin-top:14px}.group-more .minis{display:block;margin-top:8px}.group-more .mini{margin-bottom:10px}.group-more .also{font-size:.76rem}.group-more .q{font-size:.8rem}
+.talks{gap:22px}.talk{display:grid;grid-template-columns:132px minmax(0,1fr);gap:7px 15px;align-content:start}.talk>*{grid-column:2;min-width:0}.talk>.thumb{grid-column:1;grid-row:1/7}.talk:first-child{display:block}.talk>[data-embed]{display:grid;grid-template-columns:132px minmax(0,1fr);gap:7px 15px}.talk>[data-embed]>*{grid-column:2;min-width:0}.talk>[data-embed]>.thumb{grid-column:1;grid-row:1/6}.talk .slot:empty{display:none}.talk .slot:not(:empty){grid-column:1/-1}.talk .thumb{max-height:88px;aspect-ratio:16/10;border-radius:6px}.talk h3{font-size:1rem;line-height:1.35;margin:0}.talk .venue{font-size:.62rem;margin:0}.talk .meta,.talk .fine{font-size:.74rem;margin:0}.talk .actions{margin:0;gap:5px}.talk .actions>*{font-size:.73rem;padding:5px 8px}.talk .inline-d{margin-left:147px;margin-top:8px}.rec{padding:7px}.rec .top{font-size:.48rem}.rec .mid{font-size:0}.rec .mid i{width:25px;height:25px}.rec .dur{font-size:.58rem}.rec .mid i svg{width:11px;height:11px}
+#academic .disc{margin-top:14px}#academic .kv{margin-top:6px}#academic h2{font-size:1.55rem}#academic .ws li{padding:10px 0}
+@media(max-width:900px){.research-grid{grid-template-columns:1fr;gap:28px}.research-grid .group{border-bottom:1px solid var(--line-2);padding-bottom:24px}.research-grid .g-head{min-height:0}.research-grid .feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}.research-grid .f-media,.research-grid .fig{order:0}.research-grid .f-text{order:1}.talks{grid-template-columns:1fr}.band:not(#milestones){padding-top:32px;padding-bottom:32px}}
+@media(max-width:560px){.research-grid .feature{display:flex}.research-grid .stage{max-height:none}.research-grid .g-head h3{font-size:1.2rem}.talk,.talk>[data-embed]{grid-template-columns:92px minmax(0,1fr);gap:7px 12px}.talk .inline-d{margin-left:104px}.talk .thumb{max-height:64px}.talk .fine{grid-column:1/-1}.talk h3{font-size:.92rem}.talk .actions{gap:5px}.talk .actions>*{font-size:.68rem}.links a{font-size:.8rem;padding:6px 9px}.links svg,.links img{width:17px;height:17px}#academic h2{font-size:1.35rem}.about-intro .bio{font-size:.94rem}}
+
+@media(max-width:560px){.sh h2{max-width:100%;overflow-wrap:break-word;line-height:1.2}}
+@media(max-width:560px){.talk,.talk>[data-embed]{display:flow-root}.talk>.thumb,.talk>[data-embed]>.thumb{width:76px;float:left;margin:0 12px 8px 0;max-height:50px}.talk .actions{margin-top:8px}.talk .inline-d{margin-left:0}.talk .fine{margin-top:8px}.talk .slot:not(:empty){clear:both}}
+
+/* Direct biography, compact profiles and visible service. */
+.hero .links{align-items:center;gap:16px}.hero .links a{border:0;border-radius:0;background:transparent;padding:3px 0;gap:0;font-size:.85rem}.hero .links a:hover{background:transparent;color:var(--cyan)}.hero .links .social-mark a{display:flex;align-items:center;justify-content:center;width:24px;height:26px;padding:0}.hero .links .social-mark svg,.hero .links .social-mark img{width:21px;height:21px}.hero .links li:nth-child(4){border-left:1px solid var(--line-2);padding-left:16px}.bio-copy{max-width:100%;font-size:1rem;color:var(--ink-2);line-height:1.65}.bio-copy p{margin:0 0 10px}.bio-copy p:last-child{margin-bottom:0}.service-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}.service-grid>*{min-width:0}#academic .sh{margin-bottom:18px}#academic .kv{margin:0}#academic .kv li{padding:7px 0;font-size:.86rem;gap:1px}#academic .kv li b{font-size:.86rem}#academic .ws li{padding:7px 0}#academic .ws a{font-size:.86rem;font-weight:500;line-height:1.4}#academic .ws .role{font-size:.65rem;margin-bottom:2px}#academic .sub{margin-bottom:8px}
+@media(max-width:650px){.service-grid{grid-template-columns:1fr;gap:20px}.hero .links{gap:12px}.hero .links li:nth-child(4){padding-left:12px}.bio-copy{font-size:.94rem}.hero .links a{font-size:.78rem}}
+
+.service-grid .ws li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:baseline}.service-grid .ws .role{margin:0}@media(max-width:650px){.service-grid .ws li{grid-template-columns:80px minmax(0,1fr);gap:8px}}
+/* Match research navigation to the columns below; chronology lives in Milestones. */
+#research .lede{max-width:none}.traj li:not(:last-child)::after{content:none}
+@media(min-width:1000px){#research .lede{white-space:nowrap;font-size:clamp(.86rem,1.05vw,1rem)}}
+#research .lede{margin-bottom:26px}.research-grid .g-head{position:relative;padding-top:12px;border-top:2px solid var(--line-2)}.research-grid #theme-physical .g-head{border-top-color:var(--cyan)}
+@media(min-width:901px){.research-grid .g-head{min-height:144px}}
+
+/* One media per research group; consistent content rows. */
+.research-grid .feature-simple{display:flex;flex-direction:column;gap:14px}.research-grid .feature-simple .f-text{display:grid;grid-template-rows:26px 52px minmax(88px,auto) auto minmax(24px,auto);gap:8px}.research-grid .feature-simple .f-text>*{margin:0!important}.research-grid .feature-simple .venue{align-content:center}.research-grid .feature-simple .actions{align-self:start;min-height:32px}.research-grid .feature-simple .pl{align-content:start}.research-grid .feature-simple .f-title{align-self:start}.research-grid .feature-simple .f-c-txt{line-height:1.55}.research-grid .feature-simple .stage,.research-grid .feature-simple .fig{aspect-ratio:16/9;max-height:none}.research-grid .feature-simple .f-media{min-width:0}
+@media(max-width:900px){.research-grid .feature-simple{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.research-grid .feature-simple .f-text{grid-template-rows:auto auto auto auto auto}}
+@media(max-width:560px){.research-grid .feature-simple{display:flex}.research-grid .feature-simple .f-text{grid-template-rows:auto auto auto auto auto;gap:8px}}
+
+
+/* Author position is the primary personal contribution cue. */
+.research-grid .feature-simple .venue{font-size:.68rem;letter-spacing:.025em;gap:5px 8px;min-height:28px;flex-wrap:wrap}
+.research-grid .author-role{display:inline-flex;align-items:center;font-family:var(--sans,system-ui,sans-serif);font-size:.76rem;line-height:1.25;font-weight:700;letter-spacing:0;text-transform:none;color:#075b7b;background:#e0f2fa;border:1px solid #92c9df;border-radius:5px;padding:3px 7px;white-space:nowrap}
+.research-grid .feature-simple .f-text{grid-template-rows:36px 52px minmax(88px,auto) auto minmax(24px,auto)}
+@media(max-width:900px){.research-grid .feature-simple .f-text{grid-template-rows:auto auto auto auto auto}}
+@media(min-width:901px){.research-grid .feature-simple .f-text{grid-template-rows:36px 40px minmax(48px,auto) auto minmax(24px,auto)}}
+
+/* Denser vertical rhythm, without shrinking reading text. */
+.hero{padding-top:28px;padding-bottom:28px}.hero .id{height:300px}.hero .label{margin-bottom:12px}.hero .affil{margin-top:9px}.hero .slogan{margin-top:20px}.hero .support{margin-top:10px}.hero .links{margin-top:18px;gap:14px}.hero .links li:nth-child(4){border-left:0;padding-left:0}.hero .links .social-mark a{width:28px;height:28px}.hero .links .social-mark svg,.hero .links .social-mark img{width:21px;height:21px}
+.band,.band:not(#milestones){padding-top:26px;padding-bottom:26px}.band .sh,.about-intro .sh,#academic .sh{margin-bottom:14px}.bio-copy{line-height:1.55}.bio-copy p{margin-bottom:8px}.tl li{padding-top:16px}.tl .tg{margin-top:5px}.tl b{margin-top:4px}
+#research .lede{margin-bottom:18px}.research-grid{gap:22px}.research-grid .g-head{margin-bottom:10px;padding-top:9px}.research-grid .feature-simple{gap:10px}.group-more{margin-top:8px}.group-more>summary{padding:6px 0}.archive-wrap{margin-top:10px}.talks{gap:20px}.notes li{padding:10px 0}.w-head{margin-bottom:8px}.contact{padding-top:24px;padding-bottom:16px}.contact .label{margin-bottom:6px}.foot{margin-top:18px;padding-top:10px}
+@media(min-width:901px){.research-grid .g-head{min-height:132px}.research-grid .feature-simple .f-text{grid-template-rows:30px 32px minmax(42px,auto) auto minmax(22px,auto);gap:6px}}
+@media(max-width:900px){.hero .id{height:240px}.band,.band:not(#milestones){padding-top:24px;padding-bottom:24px}.research-grid .group{padding-bottom:18px}.research-grid{gap:22px}.hero-grid{gap:14px}.tl{row-gap:22px}}
+@media(max-width:650px){.hero{padding-top:22px;padding-bottom:24px}.hero .id{height:112px}.hero .links{gap:12px}.hero .links li:nth-child(4){padding-left:0}.hero .links .social-mark a{width:27px;height:30px}.band,.band:not(#milestones){padding-top:22px;padding-bottom:22px}.tl{row-gap:0}.tl li{padding-top:0}.bio-copy p{margin-bottom:8px}.service-grid{gap:16px}.contact{padding-top:22px}.foot{margin-top:14px}}
+
+
+.research-grid .venue-conference{font-family:var(--sans,system-ui,sans-serif);font-size:.78rem;font-weight:750;letter-spacing:0;color:var(--ink);white-space:nowrap}.research-grid .venue .award{font-weight:650}
+
+/* One alternating surface palette following document order. */
+.band-tint{background:var(--steel)}
+
+/* Match Writing typography to Academic service. */
+#writing h2{font-size:1.55rem}#writing .notes .t{font-size:.86rem;font-weight:500;line-height:1.45}#writing .w-head p{font-size:.86rem}#writing .notes .via{font-size:.78rem}#writing .w-head .btn{font-size:.8rem;padding:5px 10px}
+@media(max-width:560px){#writing h2{font-size:1.35rem}}
+/* Consistent section headings and unconstrained hero supporting line. */
+.sh h2{font-size:1.55rem}
+.hero .support{max-width:none}
+@media(max-width:560px){.sh h2{font-size:1.35rem}}
+/* A compact research agenda replaces the long research biography. */
+.research-agenda{margin:8px 0 0;padding-left:1.2em;display:grid;gap:5px;line-height:1.5}
+.research-agenda strong{font-weight:650;color:var(--ink)}
+.bio-copy .agenda-intro{margin-bottom:0}
+/* Contact follows the compact body typography. */
+.contact h2{font-size:.94rem;font-weight:600;margin-bottom:6px}
+.contact .email{font-size:1rem;border-bottom-width:1px}
+.contact .elsewhere{font-size:.82rem;gap:6px 16px}
+.contact-row{gap:14px 28px;align-items:center}
+/* Soft human–robot connection image behind the hero. */
+.hero::before{background-image:url('assets/media/human-robot-touch-oxford.png');background-size:cover;background-position:center 58%;opacity:.25;-webkit-mask-image:none;mask-image:none}
+.hero::after{background:linear-gradient(90deg,rgba(255,255,255,.78) 0%,rgba(255,255,255,.55) 42%,rgba(255,255,255,.15) 75%),linear-gradient(0deg,#fff 0%,rgba(255,255,255,0) 24%)}
+@media(max-width:650px){.hero::before{background-position:center bottom;opacity:.18}.hero::after{background:linear-gradient(90deg,rgba(255,255,255,.7),rgba(255,255,255,.3))}}
+/* Keep the fingertip contact left of the portrait rather than behind it. */
+.hero::before{background-size:1100px auto;background-repeat:no-repeat;background-position:calc(50% + 180px) 57%;opacity:.62}
+.hero::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.94) 24%,rgba(255,255,255,.65) 43%,rgba(255,255,255,0) 59%),linear-gradient(0deg,#fff 0%,rgba(255,255,255,0) 16%)}
+@media(max-width:900px){.hero::before{background-size:950px auto;background-position:calc(50% + 110px) 55%;opacity:.42}}
+@media(max-width:650px){.hero::before{background-size:750px auto;background-position:center 30%;opacity:.3}.hero::after{background:linear-gradient(0deg,rgba(255,255,255,.8),rgba(255,255,255,.12))}}
+</style>
 </head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
 
-<!-- Stylesheets -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-    integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
-    crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-    crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css"
-    integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg=="
-    crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css">
-<link rel="stylesheet" href="assets/css/global.css">
-
-
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mb-5 shadow-sm">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item ">
-                    <a class="nav-link" href="misc.html">Misc
-                        
-                    </a>
-                </li> -->
-                    <!-- <li class="nav-item ">
-                    <a class="nav-link" href="/resources">Resources -->
-
-                    </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
+<header class="mast">
+  <div class="wrap">
+    <a class="mark" href="#top"><span>Xianzheng Ma</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#milestones">Milestones</a>
+      <a href="#research">Research</a>
+      <a href="#talks">Talks</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <div class="container">
-        <div class="card border-0 shadow-sm bg-white">
-            <div class="card-body p-5">
-                <div class="row">
-                    <div class="col">
-                        <p class="h2 font-weight-normal">Xianzheng Ma <span>(马宪政)</span></h1>
-                        <p class="text-muted">
-                            Greeting! I am currently a DPhil Student (10.2023- ) at Department of Engineering Science,
-                            University of Oxford, supervised by <a target="_blank"
-                                href="https://www.robots.ox.ac.uk/~victor//">Prof. Victor Prisacariu</a> and <a
-                                target="_blank" href="https://eng.ox.ac.uk/people/iro-laina/">Prof. Iro Laina</a>.
-                            I am a part of both the <a href="https://www.robots.ox.ac.uk/~vgg/">Visual Geometry
-                                Group</a> as well as <a
-                                href="https://www.robots.ox.ac.uk/ActiveVision/index.html">Active Vision Group</a>.
-                            <!-- Previously, I was a full-time researcher at Shanghai AI Lab, under the supervision of <a
-                                target="_blank" href="http://xpixel.group/2010/01/20/chaodong.html">Prof. Chao Dong</a>.
-                            I obtained my Bachelor's and Master's degrees from Wuhan University in 2018 and 2021. <br>
-                            <br> -->
-                            I am currently also working closely with <a target="_blank"
-                                href="https://www.robots.ox.ac.uk/~joao/">Prof. João F. Henriques</a> and <a
-                                target="_blank" href="https://ori.ox.ac.uk/people/ingmar-posner">Prof. Ingmar
-                                Posner</a>.
-                            <br><br>
-                            My research interests include 3D computer vision and robotics. Previously, I focused on
-                            leveraging 3D Large Language Models to reason and understand the 3D world. More recently, I
-                            have
-                            shifted towards enabling robots to understand and interact with the physical world through
-                            video and
-                            3D modalities, with a current emphasis on utilizing world models to improve the
-                            generalization capability of general-purpose robotic systems. <br> <br>
-                            For any suggestions or collaborations, please reach out to me at xianzheng@robots.ox.ac.uk.
-                        </p>
-                        <p class="text-muted">
+  </div>
+</header>
 
-                        </p>
-                    </div>
-                    <div class="col-md-auto">
-                        <figure class="figure">
-                            <img src="assets/images/portrait_L.jpg" class="figure-img img-fluid img-thumbnail"
-                                style="height: 180px;" data-toggle="tooltip" data-placement="top">
-                            <figcaption class="figure-caption text-right"></figcaption>
-                        </figure>
-                    </div>
+<main id="top">
 
-                </div>
-                <div class="row h3">
-                    <div class="col">
-                        <a class="pr-3" href="mailto:xianzheng@robots.ox.ac.uk">
-                            <i class="fa fa-envelope"></i></a>
-                        <a class="pr-3" target="_blank" href="https://github.com/xianzhengma">
-                            <i class="fab fa-github"></i></a>
-                        <a class="pr-3" target="_blank"
-                            href="https://scholar.google.com/citations?user=NS8g2mMAAAAJ&hl=zh-CN&oi=ao">
-                            <i class="fab fa-google"></i></a>
-                        <a class="pr-3" target="_blank" href="https://www.linkedin.com/in/xianzheng-ma-34035126b/">
-                            <i class="fab fa-linkedin"></i></a>
-                        <a class="pr-3" target="_blank" href="cv/cv_xianzheng_ma.pdf">
-                            <i class="fa fa-file-pdf"></i></a>
-                    </div>
-                </div>
-            </div>
+<!-- ================= HERO (white) ================= -->
+<section class="hero" aria-label="Introduction">
+  <div class="ruler" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="label">World Models · Spatial Intelligence · Robot Learning</p>
+      <h1>Xianzheng Ma</h1>
+      <p class="affil">DPhil student, University of Oxford · <a href="https://www.robots.ox.ac.uk/~vgg/" target="_blank" rel="noopener">Visual Geometry Group</a></p>
+      <p class="slogan">From Modeling the World to <span>General-Purpose Robot Intelligence</span></p>
+      <p class="support">I study how robots can understand the physical world and generalize to new tasks.</p>
+      <ul class="links" aria-label="Contact and profiles">
+<li class="social-mark"><a href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener" aria-label="小红书" title="小红书"><img src="assets/icons/xiaohongshu.svg" width="20" height="20" alt="" aria-hidden="true"></a></li>
+<li class="social-mark"><a href="https://x.com/xianzhengoxford" target="_blank" rel="noopener" aria-label="Twitter / X" title="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l8.2-9.4L.8 2h6.4l4.5 6.7L18.9 2Zm-1.1 18h1.7L6.3 3.9H4.5L17.8 20Z"/></svg></a></li>
+<li class="social-mark"><a href="https://www.linkedin.com/in/xianzheng-ma-34035126b/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="3"/><circle cx="6.4" cy="7" r="1.4" fill="white"/><path d="M5.2 10h2.4v8H5.2zM10 10h2.3v1.1c.7-1 1.5-1.3 2.6-1.3 2 0 3.3 1.2 3.3 3.8V18h-2.4v-4.1c0-1.4-.5-2-1.5-2-1.1 0-1.8.7-1.8 2V18H10z" fill="white"/></svg></a></li>
+<li class="social-mark"><a href="mailto:xianzheng@robots.ox.ac.uk" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg></a></li>
+<li class="social-mark"><a href="https://scholar.google.com/citations?user=NS8g2mMAAAAJ&amp;hl=zh-CN&amp;oi=ao" target="_blank" rel="noopener" aria-label="Scholar" title="Scholar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m2 8 10-5 10 5-10 5Z"/><path d="M6 10v5c0 2 3 4 6 4s6-2 6-4v-5M22 8v9"/></svg></a></li>
+<li class="social-mark"><a href="https://github.com/xianzhengma" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></li>
+<li class="social-mark"><a href="https://xianzhengma.github.io/cv/cv_xianzheng_ma.pdf" target="_blank" rel="noopener" aria-label="CV" title="CV"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 2h9l5 5v15H5Z"/><path d="M14 2v6h5M8 12h8M8 16h8"/></svg></a></li>
+</ul>
+    </div>
+    <div class="id">
+      <!-- abstract spatial linework: orbits, a camera-style axis triad, sample points -->
+      <svg class="lines" viewBox="0 0 380 428" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+        <ellipse cx="190" cy="214" rx="182" ry="64" transform="rotate(-16 190 214)" stroke="#0B7BA3" stroke-opacity=".32"/>
+        <ellipse cx="190" cy="214" rx="150" ry="196" transform="rotate(14 190 214)" stroke="#5A6BCB" stroke-opacity=".22" stroke-dasharray="3 6"/>
+        <path d="M14 214H366" stroke="#0B7BA3" stroke-opacity=".14"/>
+        <path d="M190 6V422" stroke="#0B7BA3" stroke-opacity=".14"/>
+        <g stroke="#0B7BA3" stroke-opacity=".5" stroke-width="1.2">
+          <path d="M40 392V340"/><path d="M40 392H92"/><path d="M40 392L14 412"/>
+          <path d="M36 346l4-6 4 6"/><path d="M86 388l6 4-6 4"/>
+        </g>
+        <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="10" fill="#56688D">
+          <text x="46" y="344">y</text><text x="88" y="406">x</text><text x="4" y="408">z</text>
+        </g>
+        <g fill="#0B7BA3">
+          <circle cx="352" cy="150" r="3"/><circle cx="40" cy="268" r="2.5" fill-opacity=".7"/><circle cx="300" cy="66" r="2" fill="#5A6BCB"/>
+        </g>
+        <g stroke="#5A6BCB" stroke-opacity=".45">
+          <path d="M340 18h22v22"/><path d="M362 400v-22"/>
+        </g>
+      </svg>
+      <figure class="portrait">
+        <img src="https://xianzhengma.github.io/assets/images/portrait_L.jpg" alt="Portrait of Xianzheng Ma" width="400" height="500">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="band band-tint about about-intro" aria-labelledby="about-h"><div class="wrap"><div class="sh"><span class="no">01</span><h2 id="about-h">About</h2></div><div class="bio-copy"><p>I’m a DPhil student (since October 2023) in the Department of Engineering Science at the University of Oxford, supervised by <a href="https://www.robots.ox.ac.uk/~victor//" target="_blank" rel="noopener">Prof. Victor Prisacariu</a> and <a href="https://eng.ox.ac.uk/people/iro-laina/" target="_blank" rel="noopener">Prof. Iro Laina</a>, and part of both the <a href="https://www.robots.ox.ac.uk/~vgg/" target="_blank" rel="noopener">Visual Geometry Group</a> and the <a href="https://www.robots.ox.ac.uk/ActiveVision/index.html" target="_blank" rel="noopener">Active Vision Group</a>. I also work closely with <a href="https://www.robots.ox.ac.uk/~joao/" target="_blank" rel="noopener">Prof. João F. Henriques</a> and <a href="https://ori.ox.ac.uk/people/ingmar-posner" target="_blank" rel="noopener">Prof. Ingmar Posner</a>.</p>
+            <p class="agenda-intro">My research agenda connects perception, spatial understanding and physical world models, towards general-purpose robots that generalize:</p>
+            <ul class="research-agenda">
+              <li><strong>Reliable perception.</strong> Understanding scenes under changing weather and visual domains.</li>
+              <li><strong>Genuine spatial understanding.</strong> Testing whether 3D and language models truly reason about spatial relationships.</li>
+              <li><strong>Physical world models &amp; robotic interaction.</strong> Learning how the physical world evolves from video and 3D, to support robot understanding and interaction.</li>
+            </ul></div></div></section>
+
+<!-- ================= NEWS (white, compact) ================= -->
+<section id="news" class="band band-white band-tight" aria-labelledby="news-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="no">02</span>
+      <h2 id="news-h">Latest News</h2>
+      <p class="aside">Updated 2026-10-02</p>
+    </div>
+    <ol class="news news-top">
+      <li><time datetime="2026-09-30">2026-09-30</time><span class="tag">Preprint</span><p><a href="https://arxiv.org/abs/2609.40358" target="_blank" rel="noopener">Physis-Lang</a> is now on arXiv · <a href="https://physis-intelligence.github.io/physis-lang-web/" target="_blank" rel="noopener">project page</a> · <a href="https://github.com/Physis-Intelligence/Physis-Lang" target="_blank" rel="noopener">code</a></p></li>
+      <li><time datetime="2026-06-02">2026-06-02</time><span class="tag aw">Award</span><p><a href="https://arxiv.org/abs/2510.02311" target="_blank" rel="noopener">PhysVid</a>: <strong>Best Paper Runner-Up</strong>, <a href="https://vidgen-bench-eval.github.io/" target="_blank" rel="noopener">CVPR 2026 VGBE Workshop</a></p></li>
+      <li><time datetime="2026-05-29">2026-05-29</time><span class="tag aw">Award</span><p><a href="https://real-3dqa.github.io/" target="_blank" rel="noopener">Real-3DQA</a>: <strong>Best Paper Runner-Up</strong>, <a href="https://3d-llm-vla.github.io/" target="_blank" rel="noopener">CVPR 2026 3D-LLM/VLA Workshop</a></p></li>
+    
+      <li><time datetime="2026-03-26">2026-03-26</time><span class="tag aw">Grant</span><p>Awarded the <strong>Tencent Qingyun Student Travel Grant</strong> for ICLR 2026.</p></li>
+      <li><time datetime="2026-03-24">2026-03-24</time><span class="tag">Accepted</span><p>Our <a href="https://arxiv.org/abs/2510.02311" target="_blank" rel="noopener">PhysVid</a> paper has been accepted to <a href="https://vidgen-bench-eval.github.io/" target="_blank" rel="noopener">CVPR 2026 Workshop VGBE</a>.</p></li>
+    </ol>
+
+    <details class="disc news-all" id="news-history">
+      <summary>
+        <span class="st">Earlier news<small>12 entries · 2023-10-02 → 2026-03-13</small></span>
+        <span class="ind" aria-hidden="true"></span>
+      </summary>
+      <div class="disc-in">
+        <ol class="news">
+          
+          
+          <li><time datetime="2026-03-13">2026-03-13</time><span class="tag">Announced</span><p>I will be attending <strong>ICLR 2026</strong> in Rio de Janeiro, Brazil to present our <a href="https://real-3dqa.github.io/" target="_blank" rel="noopener">Real-3DQA</a> paper. Feel free to reach out if you’d like to connect!</p></li>
+          <li><time datetime="2026-03-13">2026-03-13</time><span class="tag">Accepted</span><p>Our <a href="https://arxiv.org/abs/2608.15710" target="_blank" rel="noopener">Beyond Single Object</a> paper has been accepted to CVPR 2026 as a Finding.</p></li>
+          <li><time datetime="2026-02-28">2026-02-28</time><span class="tag">Accepted</span><p>Our <a href="https://arxiv.org/abs/2602.21497v1" target="_blank" rel="noopener">See It, Say It, Sorted</a> paper has been accepted to CVPR 2026.</p></li>
+          <li><time datetime="2026-01-22">2026-01-22</time><span class="tag">Accepted</span><p>Our <a href="https://real-3dqa.github.io/" target="_blank" rel="noopener">Real-3DQA</a> paper has been accepted to ICLR 2026.</p></li>
+          <li><time datetime="2025-10-21">2025-10-21</time><span class="tag">Release</span><p>We have released the second version of our <a href="https://arxiv.org/abs/2405.10255v2" target="_blank" rel="noopener">3D-LLM survey</a> paper, updated to include literature up to July 2025.</p></li>
+          <li><time datetime="2025-10-03">2025-10-03</time><span class="tag">Preprint</span><p>New preprint: our <a href="https://arxiv.org/abs/2510.02311" target="_blank" rel="noopener">PhysVid</a> paper is now available on arXiv.</p></li>
+          <li><time datetime="2025-09-26">2025-09-26</time><span class="tag aw">Recognition</span><p>Selected as an <strong>Outstanding Reviewer (top 3%)</strong> at ICCV 2025.</p></li>
+          <li><time datetime="2025-02-25">2025-02-25</time><span class="tag">Accepted</span><p>Our <a href="https://arxiv.org/abs/2505.00693" target="_blank" rel="noopener">Robotic Visual Instruction</a> paper has been accepted to CVPR 2025.</p></li>
+          <li><time datetime="2024-05-16">2024-05-16</time><span class="tag">Preprint</span><p>Check out our <a href="https://arxiv.org/abs/2405.10255" target="_blank" rel="noopener">3D-LLM survey</a> paper on 3D-related tasks empowered by LLMs and other foundation models.</p></li>
+          <li><time datetime="2023-12-16">2023-12-16</time><span class="tag">Release</span><p>We curated the <a href="https://github.com/ActiveVisionLab/Awesome-LLM-3D" target="_blank" rel="noopener">Awesome-LLM-3D</a> paper list for 3D-related tasks empowered by LLMs.</p></li>
+          <li><time datetime="2023-12-15">2023-12-15</time><span class="tag">Accepted</span><p>Two papers are accepted in AAAI 2024.</p></li>
+          <li><time datetime="2023-10-02">2023-10-02</time><span class="tag">Started</span><p>Started a new journey as a DPhil (PhD) student at the <a href="https://www.robots.ox.ac.uk/~vgg/" target="_blank" rel="noopener">Visual Geometry Group</a> and <a href="https://www.robots.ox.ac.uk/ActiveVision/index.html" target="_blank" rel="noopener">Active Vision Group</a>, University of Oxford.</p></li>
+        </ol>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="milestones" class="band band-tint" aria-labelledby="miles-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="no">03</span>
+      <h2 id="miles-h">Milestones</h2>
+      <p class="aside">2022 → 2026</p>
+    </div>
+    <ol class="tl">
+      <li class="big"><details><summary><time>2022</time><b>CVPR Oral as first author</b><span class="tg" aria-hidden="true"></span></summary><p>Foggy scene understanding; also REMOTE at AAAI and Rainy WCity at IJCAI.</p></details></li>
+      <li><details><summary><time>2023</time><b>AAAI Outstanding Student Paper</b><span class="tg" aria-hidden="true"></span></summary><p>Decorate the Newcomers — plus a CVPR 2023 Highlight for Matching Is Not Enough.</p></details></li>
+      <li class="big"><details><summary><time>Oct 2023</time><b>Started my DPhil at Oxford</b><span class="tg" aria-hidden="true"></span></summary><p>Visual Geometry Group &amp; Active Vision Group.</p></details></li>
+      <li><details><summary><time>May 2024</time><b>The 3D-LLM survey</b><span class="tg" aria-hidden="true"></span></summary><p>Mapping 3D tasks via multimodal LLMs; v2 in Oct 2025.</p></details></li>
+      <li><details><summary><time>Feb 2025</time><b>Into robotics</b><span class="tg" aria-hidden="true"></span></summary><p>Robotic Visual Instruction accepted to CVPR 2025.</p></details></li>
+      <li><details><summary><time>Sep 2025</time><b>ICCV Outstanding Reviewer</b><span class="tg" aria-hidden="true"></span></summary><p>Top 3% of reviewers at ICCV 2025.</p></details></li>
+      <li class="big"><details><summary><time>Jan – Jun 2026</time><b>ICLR, CVPR &amp; two runner-up awards</b><span class="tg" aria-hidden="true"></span></summary><p>Real-3DQA at ICLR 2026, with a Tencent Qingyun Student Travel Grant; two CVPR 2026 papers; Best Paper Runner-Up for Real-3DQA and PhysVid at CVPR 2026 workshops.</p></details></li>
+      <li class="last"><details><summary><time>Sep 2026</time><b>Physis-Lang</b><span class="tg" aria-hidden="true"></span></summary><p>Physically plausible video world models, now on arXiv.</p></details></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= RESEARCH (pale steel-blue) ================= -->
+<section id="research" class="band band-white" aria-labelledby="research-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="no">04</span>
+      <h2 id="research-h">Research</h2>
+      <p class="aside">2022 → Now</p>
+    </div>
+    <p class="lede">From robust perception to spatial understanding and physical world models — towards robots that generalize.</p>
+
+    
+
+    <!-- R.01 current: big media left, compact text right -->
+    <div class="research-grid">
+<article class="group" id="theme-perception" aria-labelledby="g3-h"><header class="g-head">
+        <p class="g-idx">R.01 · 2022 – 2023</p>
+        <h3 id="g3-h">Reliable perception</h3>
+        <p class="g-desc">Perception that holds up under fog, rain and domain shift; pose estimation with few labels.</p>
+      </header><div class="feature feature-simple"><figure class="fig"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2022/cdm/thumbnail.png" alt="Figure from Both Style and Fog Matter: adapting semantic segmentation from clear to foggy scenes"></figure><div class="f-text"><p class="venue"><span class="venue-conference">CVPR 2022</span><span class="award">Oral</span><span class="author-role">First author</span></p><h4 class="f-title">Both Style and Fog Matter</h4><p class="f-c-txt">Adapting scene understanding to fog and changing visual styles.</p><div class="actions"><a class="btn" href="https://arxiv.org/abs/2112.00484" target="_blank" rel="noopener">paper ↗</a><a class="btn" href="#p-fog">details</a></div><p class="pl" aria-hidden="true"></p></div></div><details class="group-more"><summary>More in this group</summary><ul class="minis stack" aria-label="More in reliable perception">
+            <li class="mini">
+              <div class="thumb"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2022/rsgr/thumbnail1.png" alt="Figure from Decorate the Newcomers: visual domain prompts for continual test-time adaptation"></div>
+              <div>
+                <p class="venue"><span>AAAI 2023</span><span class="award">Outstanding Student Paper</span></p>
+                <h4><a href="https://arxiv.org/pdf/2212.04145.pdf" target="_blank" rel="noopener">Decorate the Newcomers</a></h4>                <p class="pl"><a href="#p-decorate">details</a></p>
+              </div>
+            </li>
+            <li class="mini">
+              <div class="thumb"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2023/match/match.png" alt="Figure from Matching Is Not Enough: two-stage category-agnostic pose estimation"></div>
+              <div>
+                <p class="venue"><span>CVPR 2023</span><span class="award">Highlight</span></p>
+                <h4><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Shi_Matching_Is_Not_Enough_A_Two-Stage_Framework_for_Category-Agnostic_Pose_CVPR_2023_paper.pdf" target="_blank" rel="noopener">Matching Is Not Enough</a></h4>                <p class="pl"><a href="https://github.com/flyinglynx/CapeFormer" target="_blank" rel="noopener">code</a><a href="#p-match">details</a></p>
+              </div>
+            </li>
+          </ul><p class="also"><span class="k">Also</span><a href="#p-remote">REMOTE</a> (AAAI 2022, first author) · <a href="#p-rainy">Rainy WCity</a> (IJCAI 2022, co-first author)</p></details></article>
+<article class="group" id="theme-spatial" aria-labelledby="g2-h"><header class="g-head">
+        <p class="g-idx">R.02 · 2023 – 2026</p>
+        <h3 id="g2-h">Genuine spatial understanding</h3>
+        <p class="g-desc">Do 3D and multimodal models truly reason about space, or only appear to?</p>
+      </header><div class="feature feature-simple"><div class="f-media" data-player><div class="stage">
+            <video controls playsinline preload="metadata" aria-label="Real-3DQA introduction video" src="https://real-3dqa.github.io/assets/teaser_full_music.mp4" poster="assets/media/real3dqa-preview.jpg"></video>
+            <button type="button" class="play" data-play aria-label="Play: Real-3DQA introduction video"><i aria-hidden="true"><svg viewBox="0 0 12 14" fill="currentColor"><path d="M0 0l12 7-12 7z"/></svg></i>Play</button>
+          </div></div><div class="f-text"><p class="venue"><span class="venue-conference">ICLR 2026</span><span class="author-role">Co-first author</span></p><h4 class="f-title">Real-3DQA</h4><p class="f-c-txt">Testing whether 3D language models truly understand spatial relationships.</p><div class="actions">
+            <a class="cta" href="https://real-3dqa.github.io/#rotation-demo" target="_blank" rel="noopener">Try live demo ↗</a>
+            <a class="btn" href="https://real-3dqa.github.io/" target="_blank" rel="noopener">Project page ↗</a>
+            <a class="btn" href="https://arxiv.org/abs/2603.23523" target="_blank" rel="noopener">Paper ↗</a>
+          </div><p class="pl"><a href="https://huggingface.co/datasets/Oliver-Ma/Real-3DQA" target="_blank" rel="noopener">data ↗</a><a href="https://github.com/xianzhengma/Real-3DQA" target="_blank" rel="noopener">code ↗</a><a href="#talk-real3dqa">recorded talk</a><a href="#p-real3dqa">details</a></p></div></div><details class="group-more"><summary>More in this group</summary><ul class="minis" aria-label="More in spatial and multimodal understanding">
+        <li class="mini">
+          <div class="thumb"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2026/siss/thumbnail.png" alt="Figure from See It, Say It, Sorted: step-by-step visually grounded reasoning"></div>
+          <div>
+            <p class="venue"><span>CVPR 2026</span></p>
+            <h4><a href="https://arxiv.org/abs/2602.21497v1" target="_blank" rel="noopener">See It, Say It, Sorted</a></h4>            <p class="pl"><a href="https://github.com/uuuuZYC/ECRD" target="_blank" rel="noopener">code</a><a href="#p-siss">details</a></p>
+          </div>
+        </li>
+        <li class="mini">
+          <div class="thumb"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2024/survey/Figure_1_v8.png" alt="Overview figure from the 3D-LLM survey mapping 3D tasks to multimodal large language models"></div>
+          <div>
+            <p class="venue"><span>Survey · IJCV under review</span></p>
+            <h4><a href="https://arxiv.org/abs/2405.10255v2" target="_blank" rel="noopener">3D-LLM survey</a></h4>            <p class="pl"><a href="https://github.com/ActiveVisionLab/Awesome-LLM-3D" target="_blank" rel="noopener">Awesome-LLM-3D</a><a href="#p-survey">details</a></p>
+          </div>
+        </li>
+      </ul><p class="also"><span class="k">Also</span><a href="#p-beyond">Beyond Single Object</a> (CVPR 2026, Finding) · <a href="#p-pointbind">Point-Bind &amp; Point-LLM</a> (arXiv 2023)</p></details></article>
+<article class="group" id="theme-physical" aria-labelledby="g1-h"><header class="g-head">
+        <p class="g-idx">R.03 · <span class="now">2025 – now · current focus</span></p>
+        <h3 id="g1-h">Physical world models &amp; robotic interaction</h3>
+        <p class="g-desc">Can models learn how the physical world evolves — well enough to be useful to robots?</p>
+      </header><div class="feature feature-simple"><div class="f-media" data-player><div class="stage">
+            <video controls playsinline preload="metadata" aria-label="Physis-Lang project overview video" src="https://physis-intelligence.github.io/physis-lang-web/assets/intro_video.mp4" poster="assets/media/physis-preview.jpg"></video>
+            <button type="button" class="play" data-play aria-label="Play: Physis-Lang project overview video"><i aria-hidden="true"><svg viewBox="0 0 12 14" fill="currentColor"><path d="M0 0l12 7-12 7z"/></svg></i>Play</button>
+          </div></div><div class="f-text"><p class="venue"><span>arXiv preprint · 2026</span><span class="author-role">Co-first author</span></p><h4 class="f-title">Physis-Lang</h4><p class="f-c-txt">Learning self-evolving physical language for more plausible video world models.</p><div class="actions">
+            <a class="cta" href="https://physis-intelligence.github.io/physis-lang-web/" target="_blank" rel="noopener">Project page ↗</a>
+            <a class="btn" href="https://arxiv.org/abs/2609.40358" target="_blank" rel="noopener">Paper ↗</a>
+            <a class="btn" href="https://github.com/Physis-Intelligence/Physis-Lang" target="_blank" rel="noopener">Code ↗</a>
+          </div><p class="pl"><a href="https://physis-intelligence.github.io/physis-lang-web/#gallery" target="_blank" rel="noopener">full gallery ↗</a><a href="#p-physis">details</a></p></div></div><details class="group-more"><summary>More in this group</summary><ul class="minis" aria-label="More in physical world models and robotic interaction">
+        <li class="mini">
+          <div class="thumb"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2025/physvid/thumbnail.png" alt="Figure from PhysVid: inferring dynamic physical properties from video"></div>
+          <div>
+            <p class="venue"><span>CVPR 2026 Workshop VGBE</span><span class="award">Best Paper Runner-Up</span></p>
+            <h4><a href="https://arxiv.org/abs/2510.02311" target="_blank" rel="noopener">PhysVid</a></h4>            <p class="pl"><a href="https://github.com/xianzhengma/PhysVid" target="_blank" rel="noopener">code</a><a href="#talk-physvid">talk slides</a><a href="#p-physvid">details</a></p>
+          </div>
+        </li>
+        <li class="mini">
+          <div class="thumb"><img loading="lazy" src="https://xianzhengma.github.io/assets/pub/2025/robotic/rvp.gif" alt="Animation from Robotic Visual Instruction showing a robot manipulation task guided by drawn visual instructions"></div>
+          <div>
+            <p class="venue"><span>CVPR 2025</span></p>
+            <h4><a href="https://robotic-visual-instruction.github.io/" target="_blank" rel="noopener">Robotic Visual Instruction</a></h4>            <p class="pl"><a href="https://arxiv.org/abs/2505.00693" target="_blank" rel="noopener">paper</a><a href="https://github.com/robotic-visual-instruction/RoVI-Book" target="_blank" rel="noopener">dataset</a><a href="#p-rovi">details</a></p>
+          </div>
+        </li>
+      </ul></details></article>
+</div>
+
+    <!-- full archive, closed by default -->
+    <div id="publications" class="archive-wrap">
+      <details class="disc" id="archive">
+        <summary>
+          <span class="st">Full publication archive · 13 papers<small>2022 – 2026 · complete authors, venues, awards, links</small></span>
+          <span class="ind" aria-hidden="true"></span>
+        </summary>
+        <div class="disc-in">
+          <p class="marks">* equal contribution · † corresponding author · ‡ equal supervision · R.0n = research group</p>
+
+          <div class="arch">
+            <div class="yr">2026</div>
+            <ol class="pubs">
+              <li class="pub" id="p-physis">
+                <h4>Physis-Lang: Self-Evolving Language as a Physical Representation for Video World Model<span class="gt">R.01</span></h4>
+                <p class="au">Liming Lu*, <b>Xianzheng Ma*</b>, Wenkun He*, Guanqi Zhan*†, Yilin Zhao, Junyu Chen, Mengyao Xu, Jiaojiao Fan, Wenhang Ge, Yuchao Gu, Yunze Liu, Boyi Li, Zhen Dong, Victor Prisacariu, Ming-Yu Liu, Song Han, Han Cai†</p>
+                <p class="ve"><i>arXiv preprint</i>, 2026</p>
+                <p class="pl"><a href="https://arxiv.org/abs/2609.40358" target="_blank" rel="noopener">paper</a><a href="https://physis-intelligence.github.io/physis-lang-web/" target="_blank" rel="noopener">project page</a><a href="https://github.com/Physis-Intelligence/Physis-Lang" target="_blank" rel="noopener">code</a><a href="https://physis-intelligence.github.io/physis-lang-web/#citation" target="_blank" rel="noopener">bibtex</a></p>
+              </li>
+              <li class="pub" id="p-real3dqa">
+                <h4>Do 3D Large Language Models Really Understand 3D Spatial Relationships?<span class="gt">R.02</span></h4>
+                <p class="au"><b>Xianzheng Ma*</b>, Tao Sun*, Shuai Chen, Yash Bhalgat, Jindong Gu†, Angel X Chang, Iro Armeni, Iro Laina, Songyou Peng‡, Victor Adrian Prisacariu‡</p>
+                <p class="ve"><i>International Conference on Learning Representations (ICLR)</i> 2026; <i>CVPR 2026 3D-LLM/VLA Workshop</i> <span class="award">Best Paper Runner-Up Award</span></p>
+                <p class="pl"><a href="https://arxiv.org/abs/2603.23523" target="_blank" rel="noopener">paper</a><a href="https://real-3dqa.github.io/" target="_blank" rel="noopener">project page</a><a href="https://huggingface.co/datasets/Oliver-Ma/Real-3DQA" target="_blank" rel="noopener">data</a><a href="https://github.com/xianzhengma/Real-3DQA" target="_blank" rel="noopener">code</a></p>
+              </li>
+              <li class="pub" id="p-siss">
+                <h4>See It, Say It, Sorted: An Iterative Training-Free Framework for Visually-Grounded Multimodal Reasoning in LVLMs<span class="gt">R.02</span></h4>
+                <p class="q">Can each reasoning step be checked against visual evidence?</p>
+                <p class="au">Yongchang Zhang*, <b>Xianzheng Ma*</b>, Tianyi Liu, Guangquan Zhou, Yang Chen</p>
+                <p class="ve"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</i> 2026</p>
+                <p class="pl"><a href="https://arxiv.org/abs/2602.21497v1" target="_blank" rel="noopener">paper</a><a href="https://arxiv.org/pdf/2602.21497v1" target="_blank" rel="noopener">pdf</a><a href="https://github.com/uuuuZYC/ECRD" target="_blank" rel="noopener">code</a><a href="https://raw.githubusercontent.com/uuuuZYC/ECRD/main/CITATION.bib" target="_blank" rel="noopener">bibtex</a></p>
+              </li>
+              <li class="pub" id="p-beyond">
+                <h4>Beyond Single Object: Learning 3D Relations with Large Language Models<span class="gt">R.02</span></h4>
+                <p class="au">Kohsuke Ide, Ryousuke Yamada, Yue Qiu, <b>Xianzheng Ma</b>, Yoshihiro Fukuhara, Hirokatsu Kataoka, Yutaka Satoh</p>
+                <p class="ve"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</i> 2026 (Finding)</p>
+                <p class="pl"><a href="https://arxiv.org/abs/2608.15710" target="_blank" rel="noopener">paper</a><a href="https://github.com/KohsukeIde/BeyondSingleObject" target="_blank" rel="noopener">code</a><a href="https://github.com/KohsukeIde/BeyondSingleObject#-citation" target="_blank" rel="noopener">bibtex</a></p>
+              </li>
+              <li class="pub" id="p-physvid">
+                <h4>Inferring Dynamic Physical Properties from Video Foundation Models<span class="gt">R.01</span></h4>
+                <p class="q">Can elasticity, viscosity and friction be read from video?</p>
+                <p class="au">Guanqi Zhan*, <b>Xianzheng Ma*</b>, Weidi Xie, Andrew Zisserman</p>
+                <p class="ve"><i>CVPR 2026 Workshop on Video Generative Models: Benchmarks and Evaluation (VGBE)</i> <span class="award">Best Paper Runner-Up</span> · arXiv preprint released 2025</p>
+                <p class="pl"><a href="https://arxiv.org/abs/2510.02311" target="_blank" rel="noopener">paper</a><a href="https://arxiv.org/pdf/2510.02311" target="_blank" rel="noopener">pdf</a><a href="https://github.com/xianzhengma/PhysVid" target="_blank" rel="noopener">code</a></p>
+              </li>
+            </ol>
+
+            <div class="yr">2025</div>
+            <ol class="pubs">
+              <li class="pub" id="p-rovi">
+                <h4>Robotic Visual Instruction<span class="gt">R.01</span></h4>
+                <p class="q">How should people tell a robot what to manipulate?</p>
+                <p class="au">Yanbang Li, ZiYang Gong, Haoyang Li, Xiaoqi Huang, Haolan Kang, Guangpingbai, <b>Xianzheng Ma</b></p>
+                <p class="ve"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</i> 2025</p>
+                <p class="pl"><a href="https://arxiv.org/abs/2505.00693" target="_blank" rel="noopener">paper</a><a href="https://robotic-visual-instruction.github.io/" target="_blank" rel="noopener">project page</a><a href="https://github.com/robotic-visual-instruction/RoVI-Book" target="_blank" rel="noopener">dataset</a></p>
+              </li>
+            </ol>
+
+            <div class="yr">2024</div>
+            <ol class="pubs">
+              <li class="pub" id="p-survey">
+                <h4>When LLMs step into the 3D World: A Survey and Meta-Analysis of 3D Tasks via Multi-modal Large Language Models<span class="gt">R.02</span></h4>
+                <p class="q">Where do LLMs stand on 3D understanding, generation and embodied tasks?</p>
+                <p class="au"><b>Xianzheng Ma*</b>, Brandon Smart*, Yash Bhalgat*, Shuai Chen, Xinghui Li, Jian Ding, Jindong Gu, Dave Zhenyu Chen, Songyou Peng, Jia-Wang Bian, Philip H Torr, Marc Pollefeys, Matthias Nießner, Ian D Reid, Angel X. Chang, Iro Laina, Victor Adrian Prisacariu</p>
+                <p class="ve"><i>IJCV under review</i> · arXiv 2024, v2 2025</p>
+                <p class="pl"><a href="https://arxiv.org/pdf/2405.10255v2" target="_blank" rel="noopener">paper</a><a href="https://arxiv.org/abs/2405.10255v2" target="_blank" rel="noopener">arXiv</a><a href="https://github.com/ActiveVisionLab/Awesome-LLM-3D" target="_blank" rel="noopener">project page / code</a></p>
+              </li>
+            </ol>
+
+            <div class="yr">2023</div>
+            <ol class="pubs">
+              <li class="pub" id="p-pointbind">
+                <h4>Point-Bind &amp; Point-LLM: Aligning Point Cloud with Multi-modality for 3D Understanding, Generation, and Instruction Following<span class="gt">R.02</span></h4>
+                <p class="au">Ziyu Guo, Renrui Zhang, Xiangyang Zhu, Yiwen Tang, <b>Xianzheng Ma</b>, Jiaming Han, Kexin Chen, Peng Gao, Xianzhi Li, Hongsheng Li, Pheng-Ann Heng</p>
+                <p class="ve"><i>arXiv preprint</i>, 2023</p>
+                <p class="pl"><a href="https://arxiv.org/pdf/2309.00615.pdf" target="_blank" rel="noopener">paper</a><a href="https://github.com/ZrrSkywalker/Point-Bind_Point-LLM" target="_blank" rel="noopener">code</a></p>
+              </li>
+              <li class="pub" id="p-match">
+                <h4>Matching Is Not Enough: A Two-Stage Framework for Category-Agnostic Pose Estimation<span class="gt">R.03</span></h4>
+                <p class="q">Can pose be estimated for object categories not seen in training?</p>
+                <p class="au">Min Shi, Zihao Huang, <b>Xianzheng Ma</b>, Xiaowei Hu, Zhiguo Cao</p>
+                <p class="ve"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</i> 2023 <span class="award">Highlight</span></p>
+                <p class="pl"><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Shi_Matching_Is_Not_Enough_A_Two-Stage_Framework_for_Category-Agnostic_Pose_CVPR_2023_paper.pdf" target="_blank" rel="noopener">paper</a><a href="https://github.com/flyinglynx/CapeFormer" target="_blank" rel="noopener">code</a></p>
+              </li>
+              <li class="pub" id="p-decorate">
+                <h4>Decorate the Newcomers: Visual Domain Prompt for Continual Test Time Adaptation<span class="gt">R.03</span></h4>
+                <p class="q">How can a model keep adapting as test domains keep changing?</p>
+                <p class="au">Yulu Gan, <b>Xianzheng Ma</b>, Yan Bai, Yihang Lou, Renrui Zhang, Nian Shi, Lin Luo</p>
+                <p class="ve"><i>AAAI Conference on Artificial Intelligence (AAAI)</i> 2023 <span class="award">Outstanding Student Paper</span></p>
+                <p class="pl"><a href="https://arxiv.org/pdf/2212.04145.pdf" target="_blank" rel="noopener">paper</a></p>
+              </li>
+            </ol>
+
+            <div class="yr">2022</div>
+            <ol class="pubs">
+              <li class="pub" id="p-fog">
+                <h4>Both Style and Fog Matter: Cumulative Domain Adaptation for Semantic Foggy Scene Understanding<span class="gt">R.03</span></h4>
+                <p class="au"><b>Xianzheng Ma</b>, Zhixiang Wang, Yacheng Zhan, Yinqiang Zheng, Zheng Wang, Dengxin Dai, Chia-Wen Lin</p>
+                <p class="ve"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</i> 2022 <span class="award">Oral</span></p>
+                <p class="pl"><a href="https://arxiv.org/abs/2112.00484" target="_blank" rel="noopener">paper</a></p>
+              </li>
+              <li class="pub" id="p-remote">
+                <h4>REMOTE: Reinforced Motion Transformation Network for Semi-supervised 2D Pose Estimation in Videos<span class="gt">R.03</span></h4>
+                <p class="au"><b>Xianzheng Ma</b>, Hossein Rahmani, Zhipeng Fan, Bin Yang, Jun Chen, Jun Liu</p>
+                <p class="ve"><i>AAAI Conference on Artificial Intelligence (AAAI)</i> 2022</p>
+                <p class="pl"><a href="https://ojs.aaai.org/index.php/AAAI/article/view/20089/19848" target="_blank" rel="noopener">paper</a></p>
+              </li>
+              <li class="pub" id="p-rainy">
+                <h4>Rainy WCity: A Real Rainfall Dataset with Diverse Conditions for Semantic Driving Scene Understanding<span class="gt">R.03</span></h4>
+                <p class="au">Xian Zhong*, <b>Xianzheng Ma*</b>, Shidong Tu, Kui Jiang, Wenxin Huang, Zheng Wang</p>
+                <p class="ve"><i>International Joint Conference on Artificial Intelligence (IJCAI)</i> 2022</p>
+                <p class="pl"><a href="https://www.ijcai.org/proceedings/2022/0243.pdf" target="_blank" rel="noopener">paper</a></p>
+              </li>
+            </ol>
+          </div>
+          <p class="scholar">Full, automatically updated list: <a href="https://scholar.google.com/citations?user=NS8g2mMAAAAJ&amp;hl=zh-CN&amp;oi=ao" target="_blank" rel="noopener">Google Scholar ↗</a></p>
         </div>
+      </details>
+    </div>
+  </div>
+</section>
 
-        <div class="my-3 p-0 bg-white shadow-sm rounded-sm">
-            <h4 class="border-bottom border-gray p-3 mb-0">
-                <i class="fas"></i> News & Updates <small class="text-muted"
-                    style="font-size: 0.5em; font-weight: normal;">( Last updated: 2026-10-02 )</small>
-            </h4>
-            <div class="p-3 pl-md-3 text-muted">
-                <ul>
-                    <li class="text-muted">
-                        [2026-09-30]&nbsp; 📢 Our <a href="https://arxiv.org/abs/2609.40358">Physis-Lang</a> paper on physically plausible video world models is now available on arXiv. See the <a href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> and <a href="https://github.com/Physis-Intelligence/Physis-Lang">repository</a>.
-                    </li>
-                    <li class="text-muted">
-                        [2026-06-02]&nbsp; 🏆 Our <a href="https://arxiv.org/abs/2510.02311">PhysVid</a> paper has been selected for the <strong>Best Paper Runner-Up Award</strong> at the <a href="https://vidgen-bench-eval.github.io/">CVPR 2026 Workshop on Video Generative Models: Benchmarks and Evaluation (VGBE)</a>!
-                    </li>
-                    <li class="text-muted">
-                        [2026-05-29]&nbsp; 🏆 Our <a href="https://real-3dqa.github.io/">Real-3DQA</a> paper has been selected for the <strong>Best Paper Runner-Up Award</strong> at the <a href="https://3d-llm-vla.github.io/">CVPR 2026 3D-LLM/VLA Workshop</a>!
-                    </li>
-                    <li class="text-muted">
-                        [2026-03-26]&nbsp; 🎉 Awarded the <strong>Tencent Qingyun Student Travel Grant</strong> for ICLR 2026!
-                    </li>
-                    <li class="text-muted">
-                        [2026-03-24]&nbsp; 🎉 Our <a href="https://arxiv.org/abs/2510.02311">PhysVid</a> paper has been accepted to <a href="https://vidgen-bench-eval.github.io/">CVPR 2026 Workshop VGBE</a>!
-                    </li>
-                    <li class="text-muted">
-                        [2026-03-13]&nbsp; ✈️ I will be attending <strong>ICLR 2026</strong> in Rio de Janeiro, Brazil
-                        to present our <a href="https://real-3dqa.github.io/">Real-3DQA</a> paper. Feel free to reach
-                        out if you'd like to connect!
-                    </li>
-                    <li class="text-muted">
-                        [2026-03-13]&nbsp; 🎉 Our <a href="https://arxiv.org/abs/2608.15710">Beyond Single Object</a> paper has been accepted to CVPR 2026 as a
-                        Finding!
-                    </li>
-                    <li class="text-muted">
-                        [2026-02-28]&nbsp; 🎉 Our <a href="https://arxiv.org/abs/2602.21497v1">See It, Say It, Sorted</a> paper has been accepted to CVPR 2026!
-                    </li>
-                    <li class="text-muted">
-                        [2026-01-22]&nbsp; 🎉 Our <a href="https://real-3dqa.github.io/">Real-3DQA</a> paper has been
-                        accepted to ICLR 2026!
-                    </li>
-                    <li class="text-muted">
-                        [2025-10-21]&nbsp; 📢 We have released the second version of our <a href="https://arxiv.org/abs/2405.10255v2">3D-LLM survey</a> paper, updated to include literature up to July 2025.
-                    </li>
-                    <li class="text-muted">
-                        [2025-10-03]&nbsp; 📢 New preprint: Our <a href="https://arxiv.org/abs/2510.02311">PhysVid</a> paper is now available on arXiv.
-                    </li>
-                    <li class="text-muted">
-                        [2025-09-26]&nbsp; 🏆 Selected as an Outstanding Reviewer (top 3%) at ICCV 2025!
-                    </li>
-                    <li class="text-muted">
-                        [2025-02-25]&nbsp; 🎉 Our <a href="https://arxiv.org/abs/2505.00693">Robotic Visual Instruction</a> paper has been accepted to CVPR 2025!
-                    </li>
-                    <li class="text-muted">
-                        [2024-05-16]&nbsp; 📢 Check out our <a href="https://arxiv.org/abs/2405.10255">3D-LLM survey</a> paper on 3D-related tasks empowered by LLMs and other foundation models.
-                    </li>
-                    <li class="text-muted">
-                        [2023-12-16]&nbsp; We curated a <a
-                            href="https://github.com/ActiveVisionLab/Awesome-LLM-3D">Awesome-LLM-3D</a> paper list for
-                        3D-related tasks empowered by LLMs.
-                    </li>
-                    <li class="text-muted">
-                        [2023-12-15]&nbsp; Two papers are accepted in AAAI2024.
-                    </li>
-                    <li class="text-muted">
-                        [2023-10-02]&nbsp; Start a new journey as DPhil (PhD) at <a
-                            href="https://www.robots.ox.ac.uk/~vgg/">Visual Geometry Group</a> and <a
-                            href="https://www.robots.ox.ac.uk/ActiveVision/index.html">Active Vision Group</a> in
-                        University of Oxford!
-                    </li>
-                </ul>
-            </div>
+<!-- ================= TALKS (white) ================= -->
+<section id="talks" class="band band-tint" aria-labelledby="talks-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="no">05</span>
+      <h2 id="talks-h">Talks</h2>
+      <p class="aside">Recording &amp; slides</p>
+    </div>
+    <div class="talks">
+      <article class="talk" id="talk-real3dqa">
+        <div data-embed="https://player.bilibili.com/player.html?bvid=BV1K1dpBjEVH&amp;autoplay=0" data-title="Bilibili player: ICLR’26高分开源 | 如何让模型真正理解3D空间？">
+          <div class="slot"></div>
+          <a class="thumb" data-embed-hide href="https://www.bilibili.com/video/BV1K1dpBjEVH/" target="_blank" rel="noopener" aria-label="Watch the recorded Real-3DQA talk on Bilibili (52 minutes 20 seconds)">
+            <span class="rec">
+              <span class="top">Bilibili · <span lang="zh-Hans">3D视觉工坊</span></span>
+              <span class="mid"><i aria-hidden="true"><svg viewBox="0 0 12 14" fill="currentColor"><path d="M0 0l12 7-12 7z"/></svg></i>Recorded talk</span>
+              <span class="dur">52:20</span>
+            </span>
+          </a>
+          <p class="venue"><span>Recording</span><span>Uploaded <time datetime="2026-04-18">2026-04-18</time></span></p>
+          <h3><a href="https://www.bilibili.com/video/BV1K1dpBjEVH/" target="_blank" rel="noopener">Recorded talk on Real-3DQA</a></h3>
+          <div class="actions">
+            <a class="cta" href="https://www.bilibili.com/video/BV1K1dpBjEVH/" target="_blank" rel="noopener">Watch on Bilibili ↗</a>
+            <button type="button" class="btn" data-embed-load>Load player here</button>
+          </div>
+          <p class="fine" data-embed-note hidden>Official Bilibili player. If it doesn’t load, use “Watch on Bilibili”.</p>
         </div>
-
-
-        <div class="my-3 p-0 bg-white shadow-sm rounded-sm">
-            <h4 class="border-bottom border-gray p-3 mb-0">
-                <i class="fas"></i> Selected Researches <small class="text-muted"
-                    style="font-size: 0.5em; font-weight: normal;">( * Equal Contribution, † Correspondence Author, ‡
-                    Equal Supervision )</small>
-            </h4>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3">
-                    <video class="w-100 rounded-sm" autoplay loop muted playsinline controls preload="metadata"
-                        style="aspect-ratio: 832 / 480; height: auto; display: block;"
-                        poster="assets/pub/2026/physis-lang/collision.jpg"
-                        aria-label="Physis-Lang video demos">
-                        <source src="assets/pub/2026/physis-lang/demo-reel.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Physis-Lang: Self-Evolving Language as a Physical Representation for Video World Model</h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body">Liming Lu*</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
-                        <span class="comma text-body">Wenkun He*</span>
-                        <span class="comma text-body">Guanqi Zhan*†</span>
-                        <span class="comma text-body">Yilin Zhao</span>
-                        <span class="comma text-body">Junyu Chen</span>
-                        <span class="comma text-body">Mengyao Xu</span>
-                        <span class="comma text-body">Jiaojiao Fan</span>
-                        <span class="comma text-body">Wenhang Ge</span>
-                        <span class="comma text-body">Yuchao Gu</span>
-                        <span class="comma text-body">Yunze Liu</span>
-                        <span class="comma text-body">Boyi Li</span>
-                        <span class="comma text-body">Zhen Dong</span>
-                        <span class="comma text-body">Victor Prisacariu</span>
-                        <span class="comma text-body">Ming-Yu Liu</span>
-                        <span class="comma text-body">Song Han</span>
-                        <span class="comma text-body">Han Cai†</span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>arXiv preprint</i>, 2026</p>
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="https://arxiv.org/abs/2609.40358">paper</a> |
-                        <a target="_blank" href="https://physis-intelligence.github.io/physis-lang-web/">project page</a> |
-                        <a target="_blank" href="https://github.com/Physis-Intelligence/Physis-Lang">code</a> |
-                        <a target="_blank" href="https://physis-intelligence.github.io/physis-lang-web/#citation">bibtex</a>
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We introduce a self-evolving physical-language representation that connects video data curation, model training, and generation to improve physical plausibility in video world models.</p>
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <video autoplay loop muted playsinline class="w-100 rounded-sm">
-                        <source src="assets/pub/2026/real3dqa/demo.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Do 3D Large Language Models Really Understand 3D Spatial
-                        Relationships?</h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
-                        <span class="comma text-body" target="_blank">Tao Sun*</span>
-                        <span class="comma text-body" target="_blank">Shuai Chen</span>
-                        <span class="comma text-body" target="_blank">Yash Bhalgat</span>
-                        <span class="comma text-body" target="_blank">Jindong Gu†</span>
-                        <span class="comma text-body" target="_blank">Angel X Chang</span>
-                        <span class="comma text-body" target="_blank">Iro Armeni</span>
-                        <span class="comma text-body" target="_blank">Iro Laina</span>
-                        <span class="comma text-body" target="_blank">Songyou Peng‡</span>
-                        <span class="comma text-body" target="_blank">Victor Adrian Prisacariu‡</span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>International Conference on Learning Representations (ICLR)</i> 2026; <i>CVPR 2026 3D-LLM/VLA Workshop</i> <span class="badge badge-pill badge-custom badge-success">Best Paper Runner-Up Award</span>
-                    </p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="https://arxiv.org/abs/2603.23523">paper</a> |
-                        <a target="_blank" href="https://real-3dqa.github.io/">project page</a> |
-                        <a target="_blank" href="https://huggingface.co/datasets/Oliver-Ma/Real-3DQA">data</a> |
-                        <a target="_blank" href="https://github.com/xianzhengma/Real-3DQA">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We find that plain LLMs with zero 3D input can match full
-                        3D-LLMs on existing benchmarks and propose a new benchmark and metric score for evaluating
-                        authentic 3D reasoning ability.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2026/siss/thumbnail.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">See It, Say It, Sorted: An Iterative Training-Free
-                        Framework for Visually-Grounded Multimodal Reasoning in LVLMs</h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body" target="_blank">Yongchang Zhang*</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
-                        <span class="comma text-body" target="_blank">Tianyi Liu</span>
-                        <span class="comma text-body" target="_blank">Guangquan Zhou</span>
-                        <span class="comma text-body" target="_blank">Yang Chen</span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition
-                            (CVPR)</i> 2026</p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="https://arxiv.org/abs/2602.21497v1">paper</a> |
-                        <a target="_blank" href="https://arxiv.org/pdf/2602.21497v1">arxiv</a> |
-                        <a target="_blank" href="https://github.com/uuuuZYC/ECRD">code</a> |
-                        <a target="_blank" href="https://raw.githubusercontent.com/uuuuZYC/ECRD/main/CITATION.bib">bibtex</a>
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We propose an iterative, training-free, plug-and-play
-                        framework that supervises each reasoning step with visual evidence, improving reasoning accuracy
-                        while effectively reducing hallucination rates across different model scales.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2026/beyond3d/thumbnail.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Beyond Single Object: Learning 3D Relations with Large
-                        Language Models</h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body" target="_blank">Kohsuke Ide</span>
-                        <span class="comma text-body" target="_blank">Ryousuke Yamada</span>
-                        <span class="comma text-body" target="_blank">Yue Qiu</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                        <span class="comma text-body" target="_blank">Yoshihiro Fukuhara</span>
-                        <span class="comma text-body" target="_blank">Hirokatsu Kataoka</span>
-                        <span class="comma text-body" target="_blank">Yutaka Satoh</span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition
-                            (CVPR)</i> 2026 (Finding)</p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="https://arxiv.org/abs/2608.15710">paper</a> |
-                        <a target="_blank" href="https://github.com/KohsukeIde/BeyondSingleObject">code</a> |
-                        <a target="_blank" href="https://github.com/KohsukeIde/BeyondSingleObject#-citation">bibtex</a>
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We study learning 3D spatial relations between multiple
-                        objects using Large Language Models.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2025/physvid/thumbnail.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Inferring Dynamic Physical Properties from Video Foundation
-                        Models</h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body" target="_blank">Guanqi Zhan*</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
-                        <span class="comma text-body" target="_blank">Weidi Xie</span>
-                        <span class="comma text-body" target="_blank">Andrew Zisserman</span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>CVPR 2026 Workshop on Video Generative Models: Benchmarks and Evaluation (VGBE)</i> <span class="badge badge-pill badge-custom badge-success">Best Paper Runner-Up</span></p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="https://arxiv.org/abs/2510.02311">paper</a> |
-                        <a target="_blank" href="https://arxiv.org/pdf/2510.02311">arxiv</a> |
-                        <a target="_blank" href="https://github.com/xianzhengma/PhysVid">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We study the task of predicting dynamic physical properties
-                        (elasticity, viscosity, friction) from videos, via collecting a new dataset and contributing
-                        three methods using classical CV, video foundation models, and MLLMs.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2025/robotic/rvp.gif" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Robotic Visual Instruction</h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body" target="_blank">Yanbang Li</span>
-                        <span class="comma text-body" target="_blank">ZiYang Gong</span>
-                        <span class="comma text-body" target="_blank">Haoyang Li</span>
-                        <span class="comma text-body" target="_blank">Xiaoqi Huang</span>
-                        <span class="comma text-body" target="_blank">Haolan Kang</span>
-                        <span class="comma text-body" target="_blank">Guangpingbai</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition
-                            (CVPR)</i> 2025</p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-                        <a target="_blank" href="https://arxiv.org/abs/2505.00693">paper</a> |
-                        <a target="_blank" href="https://robotic-visual-instruction.github.io/">project page</a> |
-                        <a target="_blank" href="https://github.com/robotic-visual-instruction/RoVI-Book">dataset</a> |
-                        <a target="_blank" href="">bibtex</a>
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We propose a novel Human-Robot Interaction (HRI) paradigm
-                        designed to enable user-friendly, interpretable, and generalizable input methods for robot
-                        manipulation.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2024/survey/Figure_1_v8.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">When LLMs step into the 3D World: A Survey and
-                        Meta-Analysis of 3D Tasks via Multi-modal Large Language Models
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
-                        <span class="comma text-body" target="_blank">Brandon Smart*</span>
-                        <a class="comma text-body" target="_blank">Yash Bhalgat*</a>
-                        <span class="comma text-body" target="_blank">Shuai Chen</span>
-                        <span class="comma text-body" target="_blank">Xinghui Li</span>
-                        <span class="comma text-body" target="_blank">Jian Ding</span>
-                        <span class="comma text-body" target="_blank">Jindong Gu</span>
-                        <span class="comma text-body" target="_blank">Dave Zhenyu Chen</span>
-                        <span class="comma text-body" target="_blank">Songyou Peng</span>
-                        <span class="comma text-body" target="_blank">Jia-Wang Bian</span>
-                        <span class="comma text-body" target="_blank">Philip H Torr</span>
-                        <span class="comma text-body" target="_blank">Marc Pollefeys</span>
-                        <span class="comma text-body" target="_blank">Matthias Nießner</span>
-                        <span class="comma text-body" target="_blank">Ian D Reid</span>
-                        <span class="comma text-body" target="_blank">Angel X. Chang</span>
-                        <span class="comma text-body" target="_blank">Iro Laina</span>
-                        <span class="comma text-body" target="_blank">Victor Adrian Prisacariu</span>
-                    </p>
-
-                    <p class="mt-0 mb-0 small"><i>IJCV under review
-                        </i>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-
-                        <a target="_blank" href="https://arxiv.org/pdf/2405.10255v2">paper</a> |
-                        <a target="_blank" href="https://arxiv.org/abs/2405.10255v2">arxiv</a> |
-                        <a target="_blank" href="https://github.com/ActiveVisionLab/Awesome-LLM-3D">project page</a> |
-                        <a target="_blank" href="https://github.com/ActiveVisionLab/Awesome-LLM-3D">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-
-                    </p>
-
-
-                    <p class="mt-0 mb-0 small text-muted">We survey the papers of 3D understanding, generation, and
-                        embodied agent tasks empowered by LLMs and other foundataion models (CLIP, SAM) </p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2023/match/point-bind.jpg" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Point-Bind & Point-LLM: Aligning Point Cloud with
-                        Multi-modality for 3D Understanding, Generation, and Instruction Following
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-                        <a class="comma text-body" target="_blank">Ziyu Guo</a>
-                        <span class="comma text-body" target="_blank">Renrui Zhang</span>
-                        <span class="comma text-body" target="_blank">Xiangyang Zhu</span>
-                        <span class="comma text-body" target="_blank">Yiwen Tang</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                        <span class="comma text-body" target="_blank">Jiaming Han</span>
-                        <span class="comma text-body" target="_blank">Kexin Chen</span>
-                        <span class="comma text-body" target="_blank">Peng Gao</span>
-                        <span class="comma text-body" target="_blank">Xianzhi Li</span>
-                        <span class="comma text-body" target="_blank">Hongsheng Li</span>
-                        <span class="comma text-body" target="_blank">Pheng-Ann Heng</span>
-                    </p>
-
-                    <!-- <p class="mt-0 mb-0 small"><i>ICLR under review -->
-                    </i>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-
-                        <a target="_blank" href="https://arxiv.org/pdf/2309.00615.pdf">paper</a> |
-                        <a target="_blank" href="https://arxiv.org/pdf/2309.00615.pdf">arxiv</a> |
-                        <a target="_blank" href="">project page</a> |
-                        <a target="_blank" href="https://github.com/ZrrSkywalker/Point-Bind_Point-LLM">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-
-                    </p>
-
-
-                    <p class="mt-0 mb-0 small text-muted">We propose a 3D multi-modal model for general 3D learning,
-                        Point-Bind, and the first 3D large language model, Point-LLM </p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2023/match/match.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Matching Is Not Enough: A Two-Stage Framework for
-                        Category-Agnostic Pose Estimation
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-                        <a class="comma text-body" target="_blank">Min Shi</a>
-                        <span class="comma text-body" target="_blank">Zihao Huang</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                        <span class="comma text-body" target="_blank">Xiaowei Hu</span>
-                        <span class="comma text-body" target="_blank">Zhiguo Cao</span>
-                    </p>
-                    <p class="mt-0 mb-0 small"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
-                        </i> 2023 <span class="badge badge-pill badge-custom badge-success">Highlight</span></p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-
-                        <a target="_blank"
-                            href="https://openaccess.thecvf.com/content/CVPR2023/papers/Shi_Matching_Is_Not_Enough_A_Two-Stage_Framework_for_Category-Agnostic_Pose_CVPR_2023_paper.pdf">paper</a>
-                        |
-                        <a target="_blank"
-                            href="https://openaccess.thecvf.com/content/CVPR2023/papers/Shi_Matching_Is_Not_Enough_A_Two-Stage_Framework_for_Category-Agnostic_Pose_CVPR_2023_paper.pdf">arxiv</a>
-                        |
-                        <a target="_blank" href="">project page</a> |
-                        <a target="_blank" href="github.com/flyinglynx/CapeFormer">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-
-                    </p>
-
-
-                    <p class="mt-0 mb-0 small text-muted">We propose a two-stage framework--CapeFormer for
-                        category-agnostic pose estimation. </p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2022/rsgr/thumbnail1.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Decorate the Newcomers: Visual Domain Prompt for Continual
-                        Test Time Adaptation
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-
-                        <span class="comma text-body" target="_blank">Yulu Gan</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                        <span class="comma text-body" target="_blank">Yan Bai</span>
-                        <span class="comma text-body" target="_blank">Yihang Lou</span>
-                        <span class="comma text-body" target="_blank">Renrui Zhang</span>
-                        <span class="comma text-body" target="_blank">Nian Shi</span>
-                        <span class="comma text-body" target="_blank">Lin Luo</span>
-                    </p>
-                    <p class="mt-0 mb-0 small"><i> AAAI Conference on Artificial Intelligence (AAAI)
-                        </i> 2023 <span class="badge badge-pill badge-custom badge-success">Outstanding Student
-                            Paper</span></p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-
-                        <a target="_blank" href="https://arxiv.org/pdf/2212.04145.pdf">paper</a> |
-                        <a target="_blank" href="https://arxiv.org/pdf/2212.04145.pdf">arxiv</a> |
-                        <a target="_blank" href="">project page</a> |
-                        <a target="_blank" href="">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-
-
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We offer an alternative and new solution for continual
-                        test-time adapation by learning visual domain prompt.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2022/cdm/thumbnail.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Both Style and Fog Matter: Cumulative Domain Adaptation for
-                        Semantic Foggy Scene Understanding
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                        <a class="comma text-body" target="_blank"
-                            href="https://scholar.google.com/citations?user=NS8g2mMAAAAJ&hl=zh-CN">Zhixiang Wang</a>
-                        <span class="comma text-body" target="_blank">Yacheng Zhan</span>
-                        <a class="comma text-body" target="_blank"
-                            href="https://researchmap.jp/yinqiangzheng?lang=en">Yinqiang Zheng</a>
-                        <a class="comma text-body" target="_blank" href="https://wangzwhu.github.io/home/">Zheng
-                            Wang</a>
-                        <a class="comma text-body" target="_blank" href="https://vas.mpi-inf.mpg.de/dengxin/">Dengxin
-                            Dai</a>
-                        <a class="comma text-body" target="_blank" href="https://www.ee.nthu.edu.tw/cwlin/">Chia-Wen
-                            Lin</a>
-                    </p>
-                    <p class="mt-0 mb-0 small"><i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
-                        </i> 2022 <span class="badge badge-pill badge-custom badge-success">Oral</span></p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-
-                        <a target="_blank" href="https://arxiv.org/abs/2112.00484">paper</a> |
-                        <a target="_blank" href="https://arxiv.org/abs/2112.00484">arxiv</a> |
-                        <a target="_blank" href="">project page</a> |
-                        <a target="_blank" href="">code</a> |
-                        <a target="_blank" href="">bibtex</a>
-
-                    </p>
-
-
-                    <p class="mt-0 mb-0 small text-muted">We alleviate the domain gap caused by mixed fog influence and
-                        style variation without labels.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2022/rsgr/thumbnail2.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">REMOTE: Reinforced Motion Transformation Network for
-                        Semi-supervised 2D Pose Estimation in Videos
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body"><strong>Xianzheng Ma</strong></span>
-                        <span class="comma text-body" target="_blank">Hossein Rahmani</span>
-                        <span class="comma text-body" target="_blank">Zhipeng Fan</span>
-                        <span class="comma text-body" target="_blank">Bin Yang</span>
-                        <span class="comma text-body" target="_blank">Jun Chen</span>
-                        <span class="comma text-body" target="_blank">Jun Liu</span>
-                    </p>
-                    <p class="mt-0 mb-0 small"><i> AAAI Conference on Artificial Intelligence (AAAI)
-                        </i> 2022</p>
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-
-                        <a target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/20089/19848">paper</a>
-                        |
-                        <a target="_blank" href="">bibtex</a>
-
-
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted">We offer an reinforcement learning based method to ultilize
-                        the temporal information in videos to train a robust pose estimator.</p>
-
-                </div>
-            </div>
-
-            <div class="row no-gutters position-relative border-bottom border-gray">
-                <div class="col-md-4 col-xl-3 mb-md-0 p-md-3 pub-thumbnail">
-                    <img src="assets/pub/2020/dsm/thumbnail3.png" class="lazy w-100 rounded-sm">
-                </div>
-                <div class="col-md-8 col-xl-9 position-static p-3 pl-md-0">
-                    <h5 class="mt-0 mb-1 font-weight-normal">Rainy WCity: A Real Rainfall Dataset with Diverse
-                        Conditions for Semantic Driving Scene Understanding
-                    </h5>
-                    <p class="mt-0 mb-0 small">
-                        <span class="comma text-body" target="_blank">Xian Zhong*</span>
-                        <span class="comma text-body"><strong>Xianzheng Ma*</strong></span>
-                        <span class="comma text-body" target="_blank">Shidong Tu</span>
-                        <span class="comma text-body" target="_blank">Kui Jiang</span>
-                        <span class="comma text-body" target="_blank">Wenxin Huang</span>
-                        <span class="comma text-body" target="_blank">Zheng Wang</span>
-                        <span class="comma text-body" target="_blank">(* means equal contribution)</span>
-                    </p>
-                    <p class="mt-0 mb-0 small"><i>International Joint Conference on Artificial Intelligence (IJCAI)</i>
-                        2022</p>
-                    <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
-
-                        <a target="_blank" href="https://www.ijcai.org/proceedings/2022/0243.pdf">paper</a> |
-                        <a target="_blank" href="https://www.ijcai.org/proceedings/2022/0243.pdf">arxiv</a> |
-                        <a target="_blank" href="">bibtex</a>
-
-
-                    </p>
-
-                    <p class="mt-0 mb-0 small text-muted"></p>
-
-                    <p class="mt-0 mb-0 small text-muted">We propose a real-world rainy driving dataset for semantic
-                        segmentation and devise an unsupervised joint optimization framework based on contrastive
-                        learning.
-
-                    </p>
-
-                </div>
-            </div>
-
-            <h6 class="d-block p-3 mt-0 text-right">
-                <a href="https://scholar.google.com/citations?user=NS8g2mMAAAAJ&hl=zh-CN&oi=ao">All publications <i
-                        class="fas fa-angle-double-right"></i></a>
-            </h6>
-
-
+        <details class="inline-d">
+          <summary>Original title</summary>
+          <p lang="zh-Hans">ICLR’26高分开源 | 如何让模型真正理解3D空间？</p>
+        </details>
+      </article>
+
+      <article class="talk" id="talk-physvid">
+        <a class="thumb" href="assets/talks/physvid-cvpr2026-slides.pdf" target="_blank" rel="noopener" aria-label="Open PhysVid talk slides (PDF)"><img src="assets/talks/physvid-cover.jpg" alt="Title slide: Inferring Dynamic Physical Properties from Video Foundation Models" width="960" height="540" loading="lazy"></a>
+        <p class="venue"><span>CVPR 2026 · VGBE Workshop</span><span class="award">Oral</span></p>
+        <h3><a href="assets/talks/physvid-cvpr2026-slides.pdf" target="_blank" rel="noopener">Inferring Dynamic Physical Properties from Video Foundation Models</a></h3>
+        <p class="meta"><span>4 June 2026 · Denver</span><span>Presenter: Xianzheng Ma</span><span>PDF · 21 slides</span></p>
+        <div class="actions">
+          <a class="cta" href="assets/talks/physvid-cvpr2026-slides.pdf" target="_blank" rel="noopener">Slides · PDF ↗</a>
+          <a class="btn" href="https://vidgen-bench-eval.github.io/" target="_blank" rel="noopener">Workshop ↗</a>
         </div>
+        <p class="fine">Talk videos appear as still frames in the PDF.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="my-3 p-0 bg-white shadow-sm rounded-sm">
-            <h4 class="border-bottom border-gray p-3 mb-0">
-                <i class="fas"></i> Academic Services
-            </h4>
-            <div class="col-md-9 col-xl-10 position-static p-3 pl-md-0 text-muted">
-                <ul>
-                    <li class="text-muted">
-                        <strong>Conference Reviewer:</strong> CVPR'2022-2026, AAAI'2022-2026, ICLR'2023-2026,
-                        NeurIPS'2024-2025, ICCV'2025, ECCV'2024.
-                    </li>
-                    <li class="text-muted">
-                        <strong>Journal Reviewer:</strong> IJCV, TPAMI, TMM,
-                    </li>
-                    <li class="text-muted">
-                        <strong>Area Chair:</strong> IJCAI'2022 (China branch)
-                </ul>
-            </div>
-        </div>
-
-        <div class="my-3 p-0 bg-white shadow-sm rounded-sm">
-            <h4 class="border-bottom border-gray p-3 mb-0">
-                <i class="fas"></i> Misc.
-            </h4>
-            <div class="col-md-9 col-xl-10 position-static p-3 pl-md-0 text-muted">
-                <ul>
-                    <li class="text-muted">
-                        <strong>Sports:</strong> Swimming 🏊‍♂️, Badminton 🏸, Tennis &#127934;
-                    </li>
-                    <li class="text-muted">
-                        <strong>Music:</strong> Recently started learning piano 🎹 — a great way to relax after
-                        research!
-                    </li>
-                    <li class="text-muted">
-                        <strong>Cooking:</strong> Steak enthusiast 🥩 — love pan-searing steaks at home. Favourite cut:
-                        ribeye.
-                    </li>
-                </ul>
-            </div>
-        </div>
+<!-- ================= MILESTONES (soft gray-blue) ================= -->
 
 
-        <script type='text/javascript' id='clustrmaps'
-            src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=1nUoTTQz0BXhp7T5dFnB1j9r2pX7sCHleOHRdYAkeII&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff'></script>
+<!-- ================= ABOUT + WORKSHOPS (white) ================= -->
+<section id="academic" class="band band-white" aria-labelledby="academic-h"><div class="wrap"><div class="sh"><span class="no">06</span><h2 id="academic-h">Academic service</h2></div><div class="service-grid"><div><h3 class="sub">Reviewing &amp; service</h3><ul class="kv">
+              <li><b>Conference reviewer</b>CVPR 2022–2026, AAAI 2022–2026, ICLR 2023–2026, NeurIPS 2024–2025, ICCV 2025, ECCV 2024</li>
+              <li><b>Journal reviewer</b>IJCV, TPAMI, TMM</li>
+              <li><b>Area Chair</b>IJCAI 2022 (China branch)</li>
+            </ul></div><div><h3 class="sub">Workshops</h3><ul class="ws">
+          <li><span class="role">Co-organizer</span><a href="https://cvpr2026-vgi-workshop.limitlab.xyz/" target="_blank" rel="noopener">CVPR 2026 · VGI Workshop</a></li>
+          <li><span class="role">Volunteer</span><a href="https://sites.google.com/view/iclr-2026-workshop-world-model/home" target="_blank" rel="noopener">ICLR 2026 · World Models Workshop</a></li>
+        </ul></div></div></div></section>
 
+<!-- ================= WRITING (ice) ================= -->
+<section id="writing" class="band band-tint" aria-labelledby="writing-h">
+  <div class="wrap">
+    <div class="sh">
+      <span class="no">07</span>
+      <h2 id="writing-h">Writing · <span lang="zh-Hans">小红书</span></h2>
+      <p class="aside">In Chinese</p>
+    </div>
+    <div class="w-head">
+      <p><span lang="zh-Hans">Xianzheng的具身学习笔记</span> <span class="h">@Oliver_embodied</span></p>
+      <a class="btn" href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener">Open profile ↗</a>
+    </div>
+    <ol class="notes" aria-label="Selected essays on research">
+      <li><span class="n">01</span><p class="t" lang="zh-Hans"><a href="https://www.xiaohongshu.com/explore/69d53b27000000002a0386af" target="_blank" rel="noopener">3D视觉还值不值得做？视频是更光明的未来吗？</a></p><a class="via" href="https://www.xiaohongshu.com/explore/69d53b27000000002a0386af" target="_blank" rel="noopener">Read note ↗</a></li>
+      <li><span class="n">02</span><p class="t" lang="zh-Hans"><a href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener">从谢赛宁访谈看恺明如何持续做出最顶的研究</a></p><a class="via" href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener">在小红书主页查看 ↗</a></li>
+      <li><span class="n">03</span><p class="t" lang="zh-Hans"><a href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener">为什么VGG这么多Best Paper? 说说我的观察</a></p><a class="via" href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener">在小红书主页查看 ↗</a></li>
+    </ol>
+  </div>
+</section>
 
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="contact-row">
+      <div>
+        <p class="label">Contact</p>
+        <h2 id="contact-h">For suggestions or collaborations</h2>
+        <a class="email" href="mailto:xianzheng@robots.ox.ac.uk">xianzheng@robots.ox.ac.uk</a>
+      </div>
+      <ul class="elsewhere" aria-label="Elsewhere">
+        <li><a href="https://scholar.google.com/citations?user=NS8g2mMAAAAJ&amp;hl=zh-CN&amp;oi=ao" target="_blank" rel="noopener">Google Scholar ↗</a></li>
+        <li><a href="https://github.com/xianzhengma" target="_blank" rel="noopener">GitHub ↗</a></li>
+        <li><a href="https://x.com/xianzhengoxford" target="_blank" rel="noopener">Twitter / X ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/xianzheng-ma-34035126b/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://xianzhengma.github.io/cv/cv_xianzheng_ma.pdf" target="_blank" rel="noopener">CV (PDF) ↗</a></li>
+        <li><a href="https://www.xiaohongshu.com/user/profile/698a25020000000026039251" target="_blank" rel="noopener">Xiaohongshu ↗</a></li>
+      </ul>
+    </div>
+    <div class="foot">
+      <span>© Xianzheng Ma <span lang="zh-Hans">马宪政</span></span>
+      <span>Content last updated 2026-10-15</span>
+    </div>
+  </div>
+</section>
 
-        <footer class="footer">
-            <div class="container">
-                <div class="row my-3">
-                    <div class="col-6">
-                        <small class="text-muted"><i>Last updated: 2026-10-02</i></small>
-                    </div>
-                    <div class="col-6">
-                        <div class="float-right text-muted"><i>template from <a href="https://luost.me">luost26</a></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-
-
-</body>
-
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
-<script type="text/javascript"
-    src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"
-    integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg=="
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/github-buttons/2.14.2/buttons.min.js"
-    integrity="sha512-OYwZx04hKFeFNYrWxIyo3atgGpb+cxU0ENWBZs72X7T9U+NoHPM1ftUn/Mfw7dRDXrqWA6M1wBg6z6fGE32aeA=="
-    crossorigin="anonymous"></script>
-<script src="assets/js/common.js?v=20261002-merged"></script>
-
-
+</main>
 
 <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+(function () {
+  function pauseAll(except) {
+    document.querySelectorAll('video').forEach(function (v) {
+      if (v !== except && !v.paused) v.pause();
+    });
+  }
 
-    ga('create', 'UA-104390830-1', 'auto');
-    ga('send', 'pageview');
+  // Only one video plays at a time.
+  document.addEventListener('play', function (e) {
+    if (e.target.tagName === 'VIDEO') pauseAll(e.target);
+  }, true);
 
+  // Media players: play overlay + source switching (paused, never autoplay).
+  document.querySelectorAll('[data-player]').forEach(function (p) {
+    var v = p.querySelector('video');
+    var play = p.querySelector('[data-play]');
+    var cap = p.querySelector('[data-caption]');
+    var btns = p.querySelectorAll('button[data-src]');
+
+    function sync() {
+      if (play) play.hidden = !(v.paused || v.ended);
+    }
+    ['play', 'pause', 'ended', 'emptied'].forEach(function (ev) { v.addEventListener(ev, sync); });
+
+    if (play) {
+      play.addEventListener('click', function () {
+        v.focus();
+        var r = v.play();
+        if (r && typeof r.catch === 'function') r.catch(function () { sync(); });
+      });
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.getAttribute('aria-pressed') === 'true') return;
+        v.pause();
+        btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        if (b.dataset.poster) v.setAttribute('poster', b.dataset.poster); else v.removeAttribute('poster');
+        v.setAttribute('aria-label', b.dataset.label);
+        v.src = b.dataset.src;
+        v.load();
+        if (play) play.setAttribute('aria-label', 'Play: ' + b.dataset.label);
+        cap.querySelector('.k').textContent = b.dataset.kind;
+        cap.querySelector('.t').textContent = b.dataset.note;
+        cap.classList.toggle('is-gen', b.hasAttribute('data-gen'));
+        sync();
+      });
+    });
+  });
+
+  // Click-to-load embeds; the external link stays as the fallback.
+  document.querySelectorAll('[data-embed]').forEach(function (box) {
+    var btn = box.querySelector('[data-embed-load]');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      pauseAll(null);
+      var f = document.createElement('iframe');
+      f.src = box.dataset.embed;
+      f.title = box.dataset.title;
+      f.setAttribute('allowfullscreen', '');
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-presentation');
+      box.querySelector('.slot').appendChild(f);
+      box.querySelectorAll('[data-embed-hide]').forEach(function (el) { el.hidden = true; });
+      btn.hidden = true;
+      var note = box.querySelector('[data-embed-note]');
+      if (note) note.hidden = false;
+      f.focus();
+    });
+  });
+
+  // Pause media inside a disclosure when it closes.
+  document.querySelectorAll('details').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) d.querySelectorAll('video').forEach(function (v) { v.pause(); });
+    });
+  });
+
+  // Open a closed <details> only when a link targets an element inside it
+  // (e.g. a "details" link to one archive entry); section links never open it.
+  function reveal(id) {
+    var t = id && document.getElementById(id);
+    if (!t || t.tagName === 'DETAILS') return;
+    for (var n = t.parentElement; n; n = n.parentElement) {
+      if (n.tagName === 'DETAILS') n.open = true;
+    }
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a) reveal(decodeURIComponent(a.getAttribute('href').slice(1)));
+  });
+  window.addEventListener('hashchange', function () { reveal(decodeURIComponent(location.hash.slice(1))); });
+  if (location.hash) reveal(decodeURIComponent(location.hash.slice(1)));
+
+
+})();
 </script>
-
-
+</body>
 </html>

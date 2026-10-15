@@ -490,6 +490,29 @@ h1 .z{font-weight:400;font-size:.42em;letter-spacing:.06em;color:var(--ink-3);ma
 .hero::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.94) 24%,rgba(255,255,255,.65) 43%,rgba(255,255,255,0) 59%),linear-gradient(0deg,#fff 0%,rgba(255,255,255,0) 16%)}
 @media(max-width:900px){.hero::before{background-size:950px auto;background-position:calc(50% + 110px) 55%;opacity:.42}}
 @media(max-width:650px){.hero::before{background-size:750px auto;background-position:center 30%;opacity:.3}.hero::after{background:linear-gradient(0deg,rgba(255,255,255,.8),rgba(255,255,255,.12))}}
+/* Give the hands a clear strip beneath the portrait and text. */
+@media(min-width:901px){.hero{padding-bottom:180px}.hero::before{background-size:1000px auto;background-position:calc(50% + 80px) calc(100% + 60px)}.hero::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.94) 24%,rgba(255,255,255,.55) 43%,rgba(255,255,255,0) 59%),linear-gradient(0deg,#fff 0%,rgba(255,255,255,0) 10%)}}
+/* Match the perceived cap height of the bilingual heading. */
+#writing h2 [lang="zh-Hans"]{font-size:.9em;font-weight:600}
+/* Keep the hands legible in the open area below the portrait. */
+@media(min-width:901px){.hero::before{opacity:.72}.hero::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.95) 24%,rgba(255,255,255,.5) 43%,rgba(255,255,255,0) 59%),linear-gradient(0deg,#fff 0%,rgba(255,255,255,0) 5%)}}
+/* Restore the compact hero; separate the portrait and hands horizontally. */
+@media(min-width:901px){
+.hero{padding-bottom:28px}
+.hero::before{background-size:900px auto;background-position:calc(50% + 80px) 57%;opacity:.62}
+.hero::after{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.96) 24%,rgba(255,255,255,.62) 43%,rgba(255,255,255,0) 58%),linear-gradient(0deg,#fff 0%,rgba(255,255,255,0) 16%)}
+.hero .id{transform:translateX(12px)}
+}
+@media(min-width:901px) and (max-width:1200px){.hero .id{transform:translateX(0px)}.hero::before{background-size:800px auto;background-position:calc(50% - 50px) 57%}}
+/* Compact news rows and history disclosure. */
+#news{padding-top:18px;padding-bottom:18px}
+#news .sh{margin-bottom:10px}
+#news .news li{padding-top:6px;padding-bottom:6px}
+#news .news p{line-height:1.4}
+#news .news-all{margin-top:10px}
+#news .news-all>summary{padding:8px 14px}
+#news .news-all>summary .st{font-size:.86rem}
+#news .news-all>summary .ind{padding:3px 10px}
 </style>
 </head>
 <body>
@@ -558,7 +581,7 @@ h1 .z{font-weight:400;font-size:.42em;letter-spacing:.06em;color:var(--ink-3);ma
   </div>
 </section>
 
-<section id="about" class="band band-tint about about-intro" aria-labelledby="about-h"><div class="wrap"><div class="sh"><span class="no">01</span><h2 id="about-h">About</h2></div><div class="bio-copy"><p>I’m a DPhil student (since October 2023) in the Department of Engineering Science at the University of Oxford, supervised by <a href="https://www.robots.ox.ac.uk/~victor//" target="_blank" rel="noopener">Prof. Victor Prisacariu</a> and <a href="https://eng.ox.ac.uk/people/iro-laina/" target="_blank" rel="noopener">Prof. Iro Laina</a>, and part of both the <a href="https://www.robots.ox.ac.uk/~vgg/" target="_blank" rel="noopener">Visual Geometry Group</a> and the <a href="https://www.robots.ox.ac.uk/ActiveVision/index.html" target="_blank" rel="noopener">Active Vision Group</a>. I also work closely with <a href="https://www.robots.ox.ac.uk/~joao/" target="_blank" rel="noopener">Prof. João F. Henriques</a> and <a href="https://ori.ox.ac.uk/people/ingmar-posner" target="_blank" rel="noopener">Prof. Ingmar Posner</a>.</p>
+<section id="about" class="band band-tint about about-intro" aria-labelledby="about-h"><div class="wrap"><div class="sh"><span class="no">01</span><h2 id="about-h">About</h2></div><div class="bio-copy"><p>I’m a final-year DPhil student (since October 2023) in the Department of Engineering Science at the University of Oxford, supervised by <a href="https://www.robots.ox.ac.uk/~victor//" target="_blank" rel="noopener">Prof. Victor Prisacariu</a> and <a href="https://eng.ox.ac.uk/people/iro-laina/" target="_blank" rel="noopener">Prof. Iro Laina</a>, and part of both the <a href="https://www.robots.ox.ac.uk/~vgg/" target="_blank" rel="noopener">Visual Geometry Group</a> and the <a href="https://www.robots.ox.ac.uk/ActiveVision/index.html" target="_blank" rel="noopener">Active Vision Group</a>. I also work closely with <a href="https://www.robots.ox.ac.uk/~joao/" target="_blank" rel="noopener">Prof. João F. Henriques</a> and <a href="https://ori.ox.ac.uk/people/ingmar-posner" target="_blank" rel="noopener">Prof. Ingmar Posner</a>.</p>
             <p class="agenda-intro">My research agenda connects perception, spatial understanding and physical world models, towards general-purpose robots that generalize:</p>
             <ul class="research-agenda">
               <li><strong>Reliable perception.</strong> Understanding scenes under changing weather and visual domains.</li>
